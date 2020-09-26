@@ -1,0 +1,56 @@
+:root {
+	// Colors
+	// Primary
+	--col-bg-pri: #{$primary-background};
+	--col-t1-pri: #{$primary-text-contrast};
+	--col-t2-pri: #{$primary-text-default};
+	--col-t3-pri: #{$primary-text-light};
+	--col-t4-pri: #{$primary-text-faded};
+	// Secondary
+	--col-bg-sec: #{$secondary-background};
+	--col-t1-sec: #{$secondary-text-contrast};
+	--col-t2-sec: #{$secondary-text-default};
+	--col-t3-sec: #{$secondary-text-light};
+	--col-t4-sec: #{$secondary-text-faded};
+	// Tertiary
+	--col-bg-ter: #{$tertiary-background};
+	--col-t1-ter: #{$tertiary-text-contrast};
+	--col-t2-ter: #{$tertiary-text-default};
+	--col-t3-ter: #{$tertiary-text-light};
+	--col-t4-ter: #{$tertiary-text-faded};
+	// Accent
+	--col-accent: #{$accent-color};
+
+	// Layout
+	// Structure
+	--page-content-width: 60rem;
+	// Spacing
+	--spacing-loose: 3rem;
+	--spacing-regular: 1.5rem;
+	--spacing-tight: 0.5rem;
+	// Gutters
+	--gutter-width: 1rem;
+
+
+	@media only screen and (min-width: 600px) {
+		--gutter-width: 1.5rem;
+	}
+}
+
+html, body {
+	width: 100%;
+}
+
+body {
+	background-color: var(--col-bg-pri);
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	overflow-wrap: break-word;
+	-webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.pagewrap {
+	width: 100%;
+	overflow-x: hidden;
+}

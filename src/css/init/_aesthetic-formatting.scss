@@ -1,0 +1,31 @@
+@mixin af-bordered-image {
+	box-sizing: border-box;
+	border: var(--gutter-width) solid var(--col-bg-sec);
+}
+
+@mixin af-clipboard {
+	position: relative;
+	border: solid 3rem #784629;
+	border-radius: 3rem;
+	border-image: url("../images/border_clipboard.svg") calc(100% / 3) stretch;
+	background-color: var(--col-bg-sec);
+
+	&::before {
+		content: "";
+		display: block;
+		background-image: url("../images/decoration_clip.svg");
+		position: absolute;
+		top: -4rem;
+		left: 50%;
+		width: 12rem;
+		height: 6rem;
+		transform: translateX(-50%);
+	}
+}
+
+@mixin af-pinboard {
+	border: solid 3rem #784629;
+	border-radius: 3rem;
+	border-image: url("../images/border_pinboard.svg") calc(100% / 3) stretch;
+	background-image: url("../images/texture_pinboard.png");
+}

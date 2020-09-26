@@ -1,0 +1,14 @@
+.c-comment-card {
+	@include lf-padded-child;
+	@include lf-spacing-vertical(var(--spacing-tight));
+	text-align: center;
+
+	&__comment {
+		@include tf-subheading(var(--col-t1-pri));
+		@include tf-quote;
+	}
+
+	&__details {
+		@include tf-caption(var(--col-t2-pri));
+	}
+}

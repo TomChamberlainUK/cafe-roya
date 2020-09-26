@@ -1,0 +1,17 @@
+// Remove default styling
+%discreet-link {
+	color: inherit;
+	text-decoration: none;
+}
+%discreet-button {
+	box-sizing: content-box;
+	outline: none;
+	border: none;
+	padding: 0;
+	background: none;
+	color: inherit;
+	font-size: inherit;
+}
+%discreet-input {
+	border: 0;
+}

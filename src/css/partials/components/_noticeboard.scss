@@ -1,0 +1,70 @@
+.c-noticeboard {
+	@include af-pinboard;
+	width: 100%;
+
+	&__card {
+		@include lf-spacing-vertical(var(--gutter-width));
+		box-sizing: border-box;
+		padding: var(--gutter-width);
+		background-color: var(--col-bg-sec);
+	}
+
+	&__card-header {
+		
+	}
+
+	&__card-content {
+		@include lf-spacing-vertical(var(--spacing-tight));
+	}
+
+	&__card-heading {
+		@include tf-heading(var(--col-t1-sec));
+
+		&--link {
+			@extend %discreet-link;
+			
+			&:hover {
+				text-decoration: underline
+			}
+		}
+	}
+
+	&__card-subheading {
+		@include tf-subheading(var(--col-t1-sec));
+	}
+
+	&__card-body {
+		@include tf-body(var(--col-t2-sec));
+
+		&--quote {
+			@include tf-quote;
+		}
+	}
+
+	&__card-caption {
+		@include tf-caption(var(--col-t3-sec));
+	}
+
+	&__card-image-frame {
+		background-color: black;
+		margin-bottom: var(--spacing-regular);
+
+		// force 1:1 aspect ratio
+		position: relative;
+		padding-top: 100%;
+		width: 100%;
+		&>.c-noticeboard__card-image {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+		}
+	}
+
+	&__card-image {
+		width: 100%;
+
+	}
+}

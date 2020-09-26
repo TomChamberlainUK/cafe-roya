@@ -1,0 +1,27 @@
+.o-textbox {
+	@include lf-padded-child;
+	@include lf-spacing-vertical(var(--spacing-regular));
+	max-width: 37rem;
+	text-align: center;
+
+	&__heading {
+		@include tf-heading(var(--col-t1-pri));
+	}
+
+	&__subheading {
+		@include tf-subheading(var(--col-t1-pri));
+		margin-bottom: var(--spacing-tight);
+	}
+
+	&__body {
+		@include tf-body(var(--col-t2-pri));
+
+		&--link {
+			@include tf-link(var(--col-t1-pri));
+		}
+	}
+
+	&__caption {
+		@include tf-caption(var(--col-t3-pri));
+	}
+}

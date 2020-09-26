@@ -1,0 +1,50 @@
+@mixin lf-spacing-vertical($gutter-size) {
+	& > * {
+		margin-bottom: $gutter-size;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+@mixin lf-spacing-horizontal($gutter-size) {
+	& > * {
+		margin-right: $gutter-size;
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+@mixin lf-responsive-grid__single-double($breakpoint, $spacing) {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-row-gap: $spacing;
+	width: 100%;
+
+	@media only screen and (min-width: $breakpoint) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-column-gap: $spacing;
+	}
+}
+
+@mixin lf-responsive-columns__single-double($breakpoint, $spacing) {
+	@include lf-spacing-vertical($spacing);
+	width: 100%;
+
+	@media only screen and (min-width: $breakpoint) {
+		column-count: 2;
+		column-gap: $spacing;
+	}
+}
+
+@mixin lf-padded-container {
+	padding: 4rem var(--gutter-width);
+	width: calc(100% - (var(--gutter-width) * 2));
+}
+
+@mixin lf-padded-child {
+	padding: 0 var(--gutter-width);
+	width: calc(100% - (var(--gutter-width) * 2));
+}

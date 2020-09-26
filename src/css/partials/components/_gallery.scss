@@ -1,0 +1,17 @@
+.c-gallery {
+	@include af-pinboard;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-row-gap: var(--spacing-loose);
+	width: 100%;
+	@media only screen and (min-width: 600px) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-column-gap: var(--spacing-loose);
+	}
+
+	&__image {
+		@include af-bordered-image;
+		width: 100%;
+	}
+}
