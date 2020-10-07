@@ -6,41 +6,37 @@ const moment = require('moment');
 
 const Dish = require('../models/dishes');
 
-
-
 // Request handling endpoints
 // GET requests
 router.get('/', (req, res, next) => {
 
 	// Pagination options
-	let pageOptions = {
+	const pageOptions = {
 		page: parseInt(req.query.page, 10) || 0,
 		limit: parseInt(req.query.limit, 10) || 10
 	}
 
-	// Format queries
 	let query = {};
-	if (Object.keys(req.query).length !== 0) { // Check if URL query exists
-		Object.keys(req.query).forEach(key => { // Format each query param
-			const value = req.query[key];
-			// Format case-insensitive regex query for name and description. leave as is for all others.
-			switch (key) {
-				// Skip page and limit queries
-				case 'page':
-				case 'limit':
-					break;
-				case 'name':
-				case 'description':
-					query[key] = { $regex: new RegExp(value), $options: 'i' }
-					break;
-				case 'course':
-				case 'dietaryOptions':
-					query[key] = value;
-					break;
-				default:
-					console.log(`Dishes GET request error. Search parameter "${key}" not recognised.`);
-			}
-		});
+	for (key in req.query) {
+		const value = req.query[key];
+		switch (key) {
+			// Skip page and limit queries
+			case 'page':
+			case 'limit':
+				break;
+			case 'name':
+			case 'description':
+				query[key] = { $regex: new RegExp(value), $options: 'i' }
+				break;
+			case 'course':
+				query[key] = value;
+				break;
+			case 'dietaryOptions':
+				query[key] = { $all: value }
+				break;
+			default:
+				console.log(`Dishes GET request error. Search parameter "${key}" not recognised.`);
+		}
 	}
 
 	Dish.find(query)
@@ -69,8 +65,35 @@ router.get('/', (req, res, next) => {
 		}
 		res.status(200).json(response);
 	})
-	.then(docs => {
-		
+	.catch(err => {
+		console.log(err);
+		res.status(500).json({
+			error: err
+		});
+	});
+});
+
+// POST requests
+router.post('/', (req, res, next) => {
+	const newDish = new Dish({
+		_id: mongoose.Types.ObjectId(),
+		name: req.body.name,
+		description: req.body.description,
+		course: req.body.course,
+		dietaryOptions: req.body.dietaryOptions
+	});
+	newDish.save()
+	.then(result => {
+		res.status(201).json({
+			message: 'New dish successfully uploaded to the database.',
+			dish: {
+				id: result.id,
+				name: result.name,
+				description: result.description,
+				course: result.course,
+				dietaryOptions: result.dietaryOptions
+			}
+		});
 	})
 	.catch(err => {
 		console.log(err);
@@ -99,37 +122,6 @@ router.get('/:id', (req, res, next) => {
 				message: `No valid dish available with ID: ${id}`
 			});
 		}
-	})
-	.catch(err => {
-		console.log(err);
-		res.status(500).json({
-			error: err
-		});
-	});
-});
-
-
-// POST requests
-router.post('/', (req, res, next) => {
-	const newDish = new Dish({
-		_id: mongoose.Types.ObjectId(),
-		name: req.body.name,
-		description: req.body.description,
-		course: req.body.course,
-		dietaryOptions: req.body.dietaryOptions
-	});
-	newDish.save()
-	.then(result => {
-		res.status(201).json({
-			message: 'New dish successfully uploaded to the database.',
-			dish: {
-				id: result.id,
-				name: result.name,
-				description: result.description,
-				course: result.course,
-				dietaryOptions: result.dietaryOptions
-			}
-		});
 	})
 	.catch(err => {
 		console.log(err);

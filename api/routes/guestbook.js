@@ -8,7 +8,6 @@ const GuestbookEntry = require('../models/guestbook_entries');
 
 
 // Request handling
-// GET requests
 router.get('/', (req, res, next) => {
 
 	// Pagination options
@@ -77,41 +76,6 @@ router.get('/', (req, res, next) => {
 	});
 });
 
-router.get('/:id', (req, res, next) => {
-	const id = req.params.id;
-	GuestbookEntry.findById(id)
-	.exec()
-	.then(doc => {
-		console.log('From database', doc);
-		if (doc) {
-			res.status(200).json({
-				name: doc.name,
-				location: doc.location,
-				date: doc.date,
-				comment: doc.comment,
-				id: doc._id,
-				request: {
-					type: 'PATCH, DELETE',
-					url: 'http://localhost:3000/api/guestbook/' + doc._id
-				}
-			});
-		} else {
-			res.status(404).json({
-				message: 'No valid guestbook entry found matching given ID',
-				id: id
-			});
-		}
-	})
-	.catch(err => {
-		console.log(err);
-		res.status(500).json({
-			error: err
-		});
-	});
-});
-
-
-// POST requests
 router.post('/', (req, res, next) => {
 
 	console.log(req);
@@ -150,7 +114,40 @@ router.post('/', (req, res, next) => {
 });
 
 
-// PATCH requests
+
+router.get('/:id', (req, res, next) => {
+	const id = req.params.id;
+	GuestbookEntry.findById(id)
+	.exec()
+	.then(doc => {
+		console.log('From database', doc);
+		if (doc) {
+			res.status(200).json({
+				name: doc.name,
+				location: doc.location,
+				date: doc.date,
+				comment: doc.comment,
+				id: doc._id,
+				request: {
+					type: 'PATCH, DELETE',
+					url: 'http://localhost:3000/api/guestbook/' + doc._id
+				}
+			});
+		} else {
+			res.status(404).json({
+				message: 'No valid guestbook entry found matching given ID',
+				id: id
+			});
+		}
+	})
+	.catch(err => {
+		console.log(err);
+		res.status(500).json({
+			error: err
+		});
+	});
+});
+
 router.patch('/:id', (req, res, next) => {
 	const id = req.params.id;
 	const updateOps = {};
@@ -177,8 +174,6 @@ router.patch('/:id', (req, res, next) => {
 	});
 });
 
-
-// DELETE requests
 router.delete('/:id', (req, res, next) => {
 	const id = req.params.id;
 	GuestbookEntry.deleteOne({ _id: id })
