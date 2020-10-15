@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
 	}
 
 	let query = {};
-	for (key in req.query) {
+	for (let key in req.query) {
 		const value = req.query[key];
 		switch (key) {
 			// Skip page and limit queries

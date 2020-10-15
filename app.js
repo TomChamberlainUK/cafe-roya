@@ -10,6 +10,7 @@ const menuRoutes = require('./api/routes/menu');
 const dishesRoutes = require('./api/routes/dishes');
 const guestbookRoutes = require('./api/routes/guestbook');
 const galleryRoutes = require('./api/routes/gallery');
+const configRoutes = require('./api/routes/config');
 
 
 // Init database
@@ -49,6 +50,7 @@ app.use('/api/menu', menuRoutes);
 app.use('/api/dishes', dishesRoutes);
 app.use('/api/guestbook', guestbookRoutes);
 app.use('/api/gallery', galleryRoutes);
+app.use('/api/config', configRoutes);
 
 // 404 error handling
 app.use((req, res, next) => {
