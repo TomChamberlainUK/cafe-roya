@@ -23,7 +23,7 @@ router.get('/', (req, res, next) => {
 
 
 // Opening Times
-router.patch('/opening-times', (req, res, next) => {
+router.patch('/', (req, res, next) => {
 	const updateOps = {};
 	for (let ops of req.body) updateOps[ops.propName] = ops.value;
 	console.log(updateOps);
@@ -33,6 +33,7 @@ router.patch('/opening-times', (req, res, next) => {
 		console.log(result);
 		res.status(200).json({
 			message: 'Opening Times successfully updated.',
+			updated: { ...updateOps },
 			request: {
 				type: 'GET',
 				url: 'http://localhost:3000/api/config'
