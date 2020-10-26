@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const multer = require('multer');
 
 const PORT = process.env.PORT || 3000;
 
@@ -18,7 +19,6 @@ mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true, useUnified
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  // we're connected!
   console.log('Successfully connected to database.');
 });
 
