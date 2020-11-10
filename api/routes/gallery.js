@@ -12,7 +12,7 @@ const GalleryImage = require('../models/gallery_images');
 const storage = multer.diskStorage({
 	destination: './public/images/uploads/',
 	filename: (req, file, callback) => {
-		callback(null,`${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
+		callback(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
 	}
 });
 
@@ -37,7 +37,7 @@ function checkFileType(file, callback) {
 	if (extname && mimetype) {
 		return callback(null, true);
 	} else {
-		callback('Only images with filetypes jpeg, jpg, png, or gif are allowed to be uploaded.')
+		callback('Only images with filetypes jpeg, jpg, png, or gif are allowed to be uploaded.');
 	}
 }
 
@@ -49,7 +49,7 @@ router.get('/', (req, res, next) => {
 		page: parseInt(req.query.page, 10) || 0,
 		limit: parseInt(req.query.limit, 10) || 10
 	}
-	
+
 	GalleryImage.find()
 	.limit(pageOptions.limit)
 	.skip(pageOptions.page * pageOptions.limit)
@@ -63,6 +63,7 @@ router.get('/', (req, res, next) => {
 					id: doc._id,
 					originalName: doc.originalname,
 					fileName: doc.filename,
+					description: doc.description,
 					path: doc.path.replace(/^(public\/)/,''), // Remove public folder as not needed
 					request: {
 						type: 'GET',
@@ -82,6 +83,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+	// Multer upload
 	upload(req, res, (err => {
 		if (err) {
 			console.log(err);
@@ -89,8 +91,13 @@ router.post('/', (req, res, next) => {
 				error: err
 			});
 		} else {
-			console.log(req.files);
-
+			// Add image descriptions to file data if available
+			if (req.body.imageDescriptions) {
+				JSON.parse(req.body.imageDescriptions).forEach((description, i) => {
+					req.files[i].description = description;
+				});
+			}
+			// Init bulk operations
 			const operations = [];
 			req.files.forEach(file => {
 				operations.push({
@@ -126,7 +133,8 @@ router.get('/:id', (req, res, next) => {
 				id: doc._id,
 				originalName: doc.originalname,
 				fileName: doc.filename,
-				path: doc.path.replace(/^(public\/)/,''), // Remove public folder as not needed
+				description: doc.description,
+				path: doc.path.replace(/^(public\/)/, ''), // Remove public folder as not needed
 				request: {
 					type: 'GET',
 					url: 'http://localhost:3000/api/gallery/' + doc._id

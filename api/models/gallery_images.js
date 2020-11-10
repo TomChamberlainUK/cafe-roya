@@ -11,7 +11,8 @@ let galleryImageSchema = new Schema({
   destination: { type: String, required: true },
   filename: { type: String, required: true },
   path: { type: String, required: true },
-  size: { type: Number, required: true }
+  size: { type: Number, required: true },
+  description: { type: String, required: true }
 }, { collection: 'galleryimages' });
 
 module.exports = mongoose.model('GalleryImage', galleryImageSchema);
