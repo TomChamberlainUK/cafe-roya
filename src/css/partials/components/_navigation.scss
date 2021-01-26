@@ -33,10 +33,7 @@
 		height: 3rem;
 		color: var(--col-t1-pri);
 		transition: border-right 0.25s ease-in-out;
-
-		@media only screen and (min-width: 1200px) {
-			color: var(--col-t2-pri);
-		}
+		color: var(--col-t2-pri);
 
 		&--active {
 			color: var(--col-t1-pri);
@@ -44,10 +41,8 @@
 		}
 
 		&:hover {
-			@media only screen and (min-width: 1200px) {
-				color: var(--col-t1-pri);
-				border-right: solid 0.25rem var(--col-t1-pri);
-			}
+			color: var(--col-t1-pri);
+			border-right: solid 0.25rem var(--col-t1-pri);
 		}
 	}
 

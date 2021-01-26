@@ -1,3 +1,27 @@
+@use "sass:math";
+
+@mixin line-clamp($initial-clamp, $step, $max-width, $min-width: 0) {
+	// init
+  $totalSteps: ($max-width - $min-width) / $step;
+
+  // Set base styles
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: $initial-clamp;
+  
+  // From min to max width in steps, increment line clamp
+  @for $i from 1 to ceil($totalSteps) {
+		// init
+    $screen-width: $min-width + 0px + $i * $step;
+		$line-clamp: $initial-clamp + $i;
+		
+    @media only screen and (min-width: $screen-width) {
+      -webkit-line-clamp: $line-clamp; // increase line clamp on 
+    }
+  }
+}
+
 @mixin tf-heading($color: inherit) {
 	color: $color;
 	font-family: 'Montserrat', sans-serif;

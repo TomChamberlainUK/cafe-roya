@@ -1,153 +1,158 @@
-<html>
-	<head>
-		<title>Guestbook | Café Roya</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width initial-scale=1.0">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700&display=swap">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link rel="stylesheet" href="css/stylesheet.css">
-	</head>
-	<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guestbook | Cafe Roya</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400%7COpen+Sans:700%7CMontserrat:700&display=swap">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="css/stylesheet.css">
+</head>
+<body>
+  <div class="c-pagewrap">
 
-		<div id="js-pagewrap" class="pagewrap">
-			<div class="js-page-fader"></div>
-			
+    <div class="c-page-fader" id="js-page-fader"></div>
 
-			<header class="c-page-header">
-				<div class="c-page-header__left">
-					<button class="js-menu-btn c-page-header__icon c-page-header__icon--button">
-						<i class="material-icons">menu</i>
-					</button>
-				</div>
-				<div class="c-page-header__center">
-					<img class="c-page-header__logo" src="images/logo_horizontal_white.svg" alt="Cafe Roya Logo">
-				</div>
-				<div class="c-page-header__right">
-					<a href="tel:01159221902" class="c-page-header__icon c-page-header__icon--link">
-						<i class="material-icons">phone</i>
-					</a>
-				</div>
-			</header>
+    <nav class="c-navigation" id="js-navigation">
+      <a class="c-navigation__link" href="index.html">
+        <i class="material-icons">home</i>
+        <span class="c-navigation__link-heading">Home</span>
+      </a>
+      <a class="c-navigation__link" href="menu.html">
+        <i class="material-icons">restaurant</i>
+        <span class="c-navigation__link-heading">Menu</span>
+      </a>
+      <a class="c-navigation__link" href="events.html">
+        <i class="material-icons">event</i>
+        <span class="c-navigation__link-heading">Events</span>
+      </a>
+      <a class="c-navigation__link c-navigation__link--active" href="guestbook.html">
+        <i class="material-icons">menu_book</i>
+        <span class="c-navigation__link-heading">Guestbook</span>
+      </a>
+      <a class="c-navigation__link" href="gallery.html">
+        <i class="material-icons">photo_library</i>
+        <span class="c-navigation__link-heading">Gallery</span>
+      </a>
+      <a class="c-navigation__link" href="contact.html">
+        <i class="material-icons">contact_support</i>
+        <span class="c-navigation__link-heading">Contact</span>
+      </a>
+    </nav>
 
-			<nav id="js-navigation" class="c-navigation">
-				<a class="c-navigation__link" href="index.html">
-					<i class="material-icons">home</i>
-					<h2 class="c-navigation__link-heading">Home</h2>
-				</a>
-				<a class="c-navigation__link" href="menu.html">
-					<i class="material-icons">restaurant</i>
-					<h2 class="c-navigation__link-heading">Menu</h2>
-				</a>
-				<a class="c-navigation__link" href="events.html">
-					<i class="material-icons">event</i>
-					<h2 class="c-navigation__link-heading">Events</h2>
-				</a>
-				<a class="c-navigation__link" href="gallery.html">
-					<i class="material-icons">photo_library</i>
-					<h2 class="c-navigation__link-heading">Gallery</h2>
-				</a>
-				<a class="c-navigation__link c-navigation__link--active" href="guestbook.html">
-					<i class="material-icons">menu_book</i>
-					<h2 class="c-navigation__link-heading">Guestbook</h2>
-				</a>
-				<a class="c-navigation__link" href="contact.html">
-					<i class="material-icons">contact_support</i>
-					<h2 class="c-navigation__link-heading">Contact</h2>
-				</a>
-			</nav>
+    <header class="c-page-header" id="js-page-header">
+      <button class="c-page-header__button" type="button" id="js-page-header__menu-btn">
+        <i class="material-icons">menu</i>
+      </button>
+      <img class="c-page-header__logo l-flex__item--center" src="images/logo_horizontal_white.svg" alt="Cafe Roya Logo">
+      <button class="c-page-header__button" type="button" id="js-page-header__sizing-btn">
+        <i class="material-icons">format_size</i>
+      </button>
+    </header>
 
-			<main class="c-page-content">
-				<div class="o-textbox">
-					<h1 class="o-textbox__heading">Guestbook</h1>
-					<p class="o-textbox__body">
-						Travelling from far away? Be sure to leave a comment in our guestbook whilst you’re here! We love hearing from our fellow food enthusiasts from all over the world.<br>
-						<br>
-						See what some of our other patrons have had to say below.
-					</p>
-				</div>
-				
-				<img class="c-page-content__doodle" src="images/sugar_skull.png" alt="IMAGE DESCRIPTION">
-				
+    <div class="c-page-banner u-hidden" id="js-page-banner">
+      <p class="c-page-banner__text-container o-caption o-caption--warning" id="js-page-banner__text-container">
+        <template id="js-page-banner__text-template">
+          <span class="c-page-banner__text js-page-banner__text"></span>
+        </template>
+      </p>
+      <button class="c-page-banner__button" type="button" id="js-page-banner__exit-btn">
+        <i class="material-icons">cancel</i>
+      </button>
+    </div>
 
+    <main class="c-page-content">
 
-				<div class="c-guestbook js-guestbook">
-					<div class="c-guestbook__border">
-						<div class="c-guestbook__border-holepunch"></div>
-						<div class="c-guestbook__border-paper"></div>
-						<div class="c-guestbook__border-spaced-dashed-bottom"></div>
-					</div>
-					<div class="c-guestbook__content js-guestbook__content">
-						
+      <section class="o-textbox">
+        <h1 class="o-textbox__heading">Guestbook</h1>
+        <p class="o-textbox__body">
+          Travelling from far away? Be sure to leave a comment in our guestbook whilst you’re here! We love hearing from our fellow food enthusiasts from all over the world.<br><br>
+          See what some of our other patrons have had to say below.
+        </p>
+      </section>
 
-					<template class="js-guestbook-template__section">
-						<div class="c-guestbook__section">
-					        <h2 class="c-guestbook__date js-guestbook__date"></h2>
-					        <div class="c-guestbook__section-content js-guestbook__section-content">
-					        	
-					        </div>
-				        </div>
-				    </template>
+      <img class="c-page-content__doodle" src="images/sugar_skull.png" alt="Chalk Doodle">
 
-					<template class="js-guestbook-template__entry">
-						<div class="c-guestbook__entry">
-							<p class="c-guestbook__comment js-guestbook__comment"></p>
-							<h3 class="c-guestbook__details">
-								<span class="c-guestbook__author js-guestbook__author"></span>
-								 - 
-								 <span class="c-guestbook__location js-guestbook__location"></span>
-							</h3>
-						</div>
-					</template>
+      <section class="c-content-container c-guestbook l-spacing-vertical--loose" id="js-guestbook">
+        <!-- For aesthetics only -->
+        <div class="c-guestbook__border">
+          <div class="c-guestbook__border-holepunch"></div>
+          <div class="c-guestbook__border-paper"></div>
+          <div class="c-guestbook__border-spaced-dashed-bottom"></div>
+        </div>
+        <!-- end -->
 
-					<template class="js-guestbook-template__seperator">
-						<div class="c-guestbook__seperator"></div>
-					</template>
+        <header class="l-spacing-vertical--loose">
+          <h2 class="o-heading">Customer Comments</h2>
+          <hr class="o-seperator o-seperator--bold">
+        </header>
 
-					</div>
-				</div>
+        <ul class="l-spacing-vertical--loose" id="js-guestbook__content"></ul>
+        <div class="o-throbber u-hidden" id="js-guestbook__throbber"></div>
+        <p class="o-caption o-caption--centered" id="js-guestbook__failed-message">
+          We ran into issues loading the guestbook, sorry!<br>
+					<a class="o-caption--link" href="guestbook.html">Refreshing the page</a> may solve this problem.<br>
+        </p>
+      </section>
 
+    </main>
+    
+    <article class="c-comment-card u-hidden" id="js-comment-card">
+      <h2 class="u-hidden--accessible">Customer Comment</h2>
+      <p class="o-subheading o-subheading--alt o-subheading--centered" id="js-comment-card__comment"></p>
+      <p class="o-caption o-caption--alt o-caption--centered">
+        <span id="js-comment-card__name"></span>
+          | 
+        <span id="js-comment-card__location"></span>
+      </p>
+    </article>
 
-				<div class="c-comment-card js-comment-card">
-					<p class="c-comment-card__comment js-comment-card__comment">“Delicious vegan food—full marks to everyone!”</p>
-					<p class="c-comment-card__details">
-						<span class="js-comment-card__name">Hazel Birchenough</span>
-						 | 
-						<span class="js-comment-card__date">11th October 2019</span>
-					</p>
-				</div>
-				
-			</main>
+    <footer class="c-page-footer">
+      <div class="c-page-footer__content">
+        <nav class="c-page-footer__social-navigation">
+          <a class="c-page-footer__social-link" href="https://www.facebook.com/CafeRoya130/" target="_blank">
+            <img class="c-page-footer__social-icon" src="images/icon_facebook_white.svg" alt="Facebook Icon">
+          </a>
+          <a class="c-page-footer__social-link" href="https://www.instagram.com/caferoya130/" target="_blank">
+            <img class="c-page-footer__social-icon" src="images/icon_instagram_white.svg" alt="Instagram Icon">
+          </a>
+          <a class="c-page-footer__social-link" href="https://twitter.com/caferoya/" target="_blank">
+            <img class="c-page-footer__social-icon" src="images/icon_twitter_white.svg" alt="Twitter Icon">
+          </a>
+        </nav>
+        <hr class="o-seperator o-seperator--bold-alt c-page-footer__seperator">
+        <img class="c-page-footer__logo" src="images/logo_vertical_white.svg" alt="Cafe Roya Logo">
+      </div>
+    </footer>
 
+  </div>
 
+  <template id=js-template__guestbook-heading>
+    <h3 class="o-heading" id="js-guestbook-heading"></h3>
+  </template>
 
-			<footer class="c-page-footer">
-				<div class="c-page-footer__content">
-					<div class="c-page-footer__social-icons-list">
-						<a class="c-page-footer__social-icon" href="https://www.facebook.com/CafeRoya130/" target="_blank">
-							<img class="o-social-icon" src="images/icon_facebook_white.svg" alt="Facebook Icon">
-						</a>
-						<a class="c-page-footer__social-icon" href="https://www.instagram.com/caferoya130/" target="_blank">
-							<img class="o-social-icon" src="images/icon_instagram_white.svg" alt="Instagram Icon">
-						</a>
-						<a class="c-page-footer__social-icon" href="https://twitter.com/caferoya/" target="_blank">
-							<img class="o-social-icon" src="images/icon_twitter_white.svg" alt="Twitter Icon">
-						</a>
-					</div>
-					<div class="c-page-footer__seperator"></div>
-					<img class="c-page-footer__logo" src="images/logo_vertical_white.svg" alt="Cafe Roya Logo">
-				</div>
-			</footer>
+  <template id="js-template__guestbook-entry">
+    <li class="l-spacing-vertical--tight js-guestbook-entry">
+      <h4 class="o-subheading js-guestbook-entry__date"></h4>
+      <p class="o-body js-guestbook-entry__comment"></p>
+      <p class="o-caption">
+        <span class="js-guestbook-entry__name"></span>
+         | 
+        <span class="js-guestbook-entry__location"></span>
+      </p>
+    </li>
+  </template>
 
+  <template id="js-template__seperator">
+    <hr class="o-seperator js-seperator">
+  </template>
+    
 
+  <script src="js/vendor/events.js"></script>
+  <script src="js/vendor/moment.js"></script>
 
-		</div>
-
-		<script src="js/vendor/moment.js"></script>
-		<script src="js/vendor/events-handler.js"></script>
-
-		<script src="js/helpers.js"></script>
-		<script src="js/guestbook.js"></script>
-		<script src="js/global.js"></script>
-		<script src="js/database-events.js"></script>
-	</body>
+  <script src="js/helpers.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/guestbook.js"></script>
+</body>
 </html>

@@ -1,21 +1,24 @@
 .c-map {
-	@include af-bordered-image;
+  background-color: var(--col-bg-sec);
+
+	// Force 4:3 aspect ratio
 	width: 100%;
 	padding-top: 75%;
-	position: relative;
-	background-color: black;
+  position: relative;
+  
+  // Force 16:9 aspect ratio
+  @media only screen and (min-width: 600px) {
+    padding-top: 56.25%;
+  }
 
-	@media only screen and (min-width: 600px) {
-		padding-top: 56.25%;
-	}
-
-	&__embedded-map {
+  &__embedded-map {
+    padding: var(--gutter-width);
+    width: 100%;
+		height: 100%;
+    // Fix positioning with aspect ratio
 		position: absolute;
 		top: 0;
 		left: 0;
-		bottom: 0;
-		right: 0;
-		width: 100%;
-		height: 100%;
-	}
+		box-sizing: border-box;
+  }
 }

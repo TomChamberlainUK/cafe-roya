@@ -1,70 +1,95 @@
-.c-noticeboard {
-	@include af-pinboard;
+.c-noticeboard-card {
+  padding: var(--spacing-loose) var(--gutter-width) var(--spacing-regular) var(--gutter-width);
+  background-color: var(--col-bg-sec);
+
+  &__header {
+    @include lf-spacing-vertical(var(--spacing-loose));
+    margin-bottom: var(--spacing-loose);
+  }
+
+  &__body {
+    @include lf-spacing-vertical(var(--spacing-tight));
+    margin-bottom: var(--spacing-regular);
+  }
+
+  &__page-link {
+    @extend %discreet-link;
+    display: inline-block;
+    width: 100%;
+    color: var(--col-accent);
+  }
+
+  &__image {
+    width: 100%;
+  }
+}
+
+.c-noticeboard-event-card {
+  display: grid;
+  gap: var(--gutter-width);
+  padding: var(--gutter-width);
+  background-color: var(--col-bg-sec);
+
+  &__image-wrapper {
+    background-color: black;
+    // Force 1:1 aspect ratio
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+  }
+
+  &__image {
+    // For aspect ratio
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    object-fit: cover;
+  }
+
+  &__information {
+    @include lf-spacing-vertical(var(--spacing-regular));
+  }
+
+  &__heading {
+    // Line clamping, ie truncating long text with elipsis
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+  }
+
+  &__description {
+    // Line clamping, ie truncating long text with elipsis
+    @include line-clamp(3, 36, 960, 636);
+      -webkit-line-clamp: 6;
+  }
+
+  &__facebook-link {
+    @extend %discreet-link;
+    display: inline-block;
+    width: 100%;
+    color: var(--col-accent);
+  }
+}
+
+.c-noticeboard-gallery-card {
+	background-color: var(--col-bg-sec);
+	// Force 4:3 aspect ratio
 	width: 100%;
+	padding-top: 75%;
+	position: relative;
 
-	&__card {
-		@include lf-spacing-vertical(var(--gutter-width));
-		box-sizing: border-box;
+	&__image {
 		padding: var(--gutter-width);
-		background-color: var(--col-bg-sec);
-	}
-
-	&__card-header {
-		
-	}
-
-	&__card-content {
-		@include lf-spacing-vertical(var(--spacing-tight));
-	}
-
-	&__card-heading {
-		@include tf-heading(var(--col-t1-sec));
-
-		&--link {
-			@extend %discreet-link;
-			
-			&:hover {
-				text-decoration: underline
-			}
-		}
-	}
-
-	&__card-subheading {
-		@include tf-subheading(var(--col-t1-sec));
-	}
-
-	&__card-body {
-		@include tf-body(var(--col-t2-sec));
-
-		&--quote {
-			@include tf-quote;
-		}
-	}
-
-	&__card-caption {
-		@include tf-caption(var(--col-t3-sec));
-	}
-
-	&__card-image-frame {
-		background-color: black;
-		margin-bottom: var(--spacing-regular);
-
-		// force 1:1 aspect ratio
-		position: relative;
-		padding-top: 100%;
+    // For aspect ratio
 		width: 100%;
-		&>.c-noticeboard__card-image {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			margin: auto;
-		}
-	}
-
-	&__card-image {
-		width: 100%;
-
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		box-sizing: border-box;
 	}
 }

@@ -1,46 +1,10 @@
 .c-guestbook {
-	@include lf-padded-container;
 	background-color: var(--col-bg-sec);
 
-	&__content {
-		@include lf-spacing-vertical(var(--spacing-loose));
-	}
-
-	&__section {
-		@include lf-spacing-vertical(var(--spacing-regular));
-	}
-
-	&__date {
-		@include tf-subheading(var(--col-t1-sec));
-	}
-
-	&__section-content {
-		@include lf-spacing-vertical(var(--spacing-regular));
-	}
-
-	&__entry {
-		@include lf-spacing-vertical(var(--spacing-tight));
-	}
-
-	&__comment {
-		@include tf-body(var(--col-t2-sec));
-		@include tf-quote;
-	}
-
-	&__details {
-		@include tf-caption(var(--col-t3-sec));
-	}
-
-	&__author {}
-
-	&__location {}
-
-	&__seperator {
-		@include seperator(var(--col-t2-sec));
-	}
-
-
-	// FAIRLY HACKY WAY TO MAKE THE TOP BORDER RING-BINDER-ESQUE DECORATION RESPONSIVE, NEEDS IMPROVING
+	// FAIRLY HACKY WAY TO MAKE THE TOP BORDER RING-BINDER DECORATION RESPONSIVE
+	// To do:
+	// See if the aesthetic aspects of this can be remove from html structure - see guestbook.html
+	// Reduce to an easily reusable SCSS mixin
 	position: relative;
 	margin-top: 85px;
 	&__border {

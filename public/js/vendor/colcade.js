@@ -364,10 +364,3 @@ function docReady( onReady ) {
 return Colcade;
 
 }));
-
-
-// selector string as first argument
-var colc = new Colcade( '.js-masonry-grid', {
-  columns: '.js-masonry-grid__column',
-  items: '.js-masonry-grid__item'
-});

@@ -2,46 +2,47 @@
 @import 'vendor/reset'; // Meyer's web reset v2.0
 
 // Initialize - pure SCSS helpers
-@import 'init/variables'; // Customizable SCSS variables
-@import 'init/text-formatting';
+@import 'init/variables';
 @import 'init/layout-formatting';
+@import 'init/text-formatting';
 @import 'init/aesthetic-formatting';
-@import 'init/discreet-elements'; // Remove default styling on buttons, links, etc.
+@import 'init/discreet-elements';
+@import 'init/animation';
 @import 'init/seperator';
 
 // Core
 @import 'partials/core'; // CSS Variables and core formatting
+@import 'partials/layout';
 
-// Components - Generic UI
-@import 'partials/components/header';
-@import 'partials/components/content';
-@import 'partials/components/footer';
+// Objects
+@import 'partials/objects/text';
+@import 'partials/objects/textbox';
+@import 'partials/objects/buttons';
+@import 'partials/objects/seperator';
+@import 'partials/objects/throbber';
+
+// Components - Generic
+@import 'partials/components/page-header';
+@import 'partials/components/page-banner';
+@import 'partials/components/page-content';
+@import 'partials/components/page-footer';
+@import 'partials/components/page-fader';
+@import 'partials/components/content-container';
 @import 'partials/components/navigation';
+@import 'partials/components/form';
 @import 'partials/components/comment-card';
+@import 'partials/components/map';
 
 // Components - Page-Specific
 @import 'partials/components/landing-page';
-@import 'partials/components/noticeboard';
 @import 'partials/components/menu';
-@import 'partials/components/events-list';
-@import 'partials/components/gallery';
-@import 'partials/components/map';
-@import 'partials/components/enquiry-form';
+@import 'partials/components/events';
 @import 'partials/components/guestbook';
-@import 'partials/components/gallery-modal';
+@import 'partials/components/gallery';
+@import 'partials/components/noticeboard';
 
-// Objects
-@import 'partials/objects/textbox';
-@import 'partials/objects/social-icon';
+// Components - JS required
+@import 'partials/components/masonry-grid';
 
 // Utilities
-@import 'partials/utilities/prevent-scroll';
-
-// Javascript Objects
-@import 'partials/js-objects/page-loader';
-@import 'partials/js-objects/page-fader';
-@import 'partials/js-objects/carousel';
-@import 'partials/js-objects/masonry-grid';
-
-// Layout
-@import 'vendor/grid';
+@import 'partials/utilities';

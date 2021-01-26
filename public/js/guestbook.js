@@ -1,114 +1,130 @@
 const guestbook = (function() {
 
-  // Cache DOM
-  const guestbook = { container: document.querySelector('.js-guestbook__content') }
-    guestbook.template = {
-      section: guestbook.container.querySelector('.js-guestbook-template__section'),
-      entry: guestbook.container.querySelector('.js-guestbook-template__entry'),
-      seperator: guestbook.container.querySelector('.js-guestbook-template__seperator')
-    }
+  // Configure
+  let currentPage = 0;
+  let pageLimit = 10;
 
-  class Section {
-    constructor(date) {
-      this.nodeTree = guestbook.template.section.content.cloneNode(true);
+  // Cache dom
+  const templates = {
+    guestbookHeading: document.querySelector('#js-template__guestbook-heading'),
+    guestbookEntry: document.querySelector('#js-template__guestbook-entry'),
+    seperator: document.querySelector('#js-template__seperator')
+  }
+  const guestbook = {
+    content: document.querySelector('#js-guestbook__content'),
+    throbber: document.querySelector('#js-guestbook__throbber'),
+    failedMessage: document.querySelector('#js-guestbook__failed-message')
+  }
+  // Init values
+  let prevMonthYear; // Init tracking for headers
+
+  // Defines classes
+  class GuestbookEntry {
+    constructor(name, location, date, comment) {
+      this.template = templates.guestbookEntry.content.cloneNode(true);
       this.nodes = {
-        date: this.nodeTree.querySelector('.js-guestbook__date'),
-        content: this.nodeTree.querySelector('.js-guestbook__section-content')
-      } 
-      this.data = {
-        date: date
+        root: this.template.querySelector('.js-guestbook-entry'),
+        name: this.template.querySelector('.js-guestbook-entry__name'),
+        location: this.template.querySelector('.js-guestbook-entry__location'),
+        date: this.template.querySelector('.js-guestbook-entry__date'),
+        comment: this.template.querySelector('.js-guestbook-entry__comment')
       }
-      render(this.data.date, this.nodes.date);
+      // Render
+      this.nodes.name.innerHTML = name;
+      this.nodes.location.innerHTML = location;
+      this.nodes.date.innerHTML = date;
+      this.nodes.comment.innerHTML = comment;
     }
-    addEntry(entry) {
-      this.nodes.content.append(entry);
+    appendTo(target) {
+      target.append(this.nodes.root);
     }
   }
 
-  class Entry {
-    constructor(author, location, comment) {
-      this.nodeTree = guestbook.template.entry.content.cloneNode(true);
+  class GuestbookHeading {
+    constructor(date) {
+      this.template = templates.guestbookHeading.content.cloneNode(true);
       this.nodes = {
-        author: this.nodeTree.querySelector('.js-guestbook__author'),
-        location: this.nodeTree.querySelector('.js-guestbook__location'),
-        comment: this.nodeTree.querySelector('.js-guestbook__comment')
+        root: this.template.querySelector('#js-guestbook-heading')
       }
-      this.data = {
-        author: author,
-        location: location,
-        comment: comment
-      }
-      render(this.data.author, this.nodes.author);
-      render(this.data.location, this.nodes.location);
-      render(this.data.comment, this.nodes.comment);
+      // Render
+      this.nodes.root.innerHTML = date;
+    }
+    appendTo(target) {
+      target.append(this.nodes.root);
     }
   }
 
   class Seperator {
     constructor() {
-      this.nodeTree = guestbook.template.seperator.content.cloneNode(true);
+      this.template = templates.seperator.content.cloneNode(true);
+      this.nodes = {
+        root: this.template.querySelector('.js-seperator')
+      }
+    }
+    appendTo(target) {
+      target.append(this.nodes.root);
     }
   }
 
-
   // Bind events
-  events.on('loaded-guestbook', updateGuestbook);
+  init();
+  events.on('pageScroll:bottom', getEntriesPage);
 
   // Behaviour
-  function updateGuestbook(guestbookData) {
-    // Group data by date
-    guestbookData = groupByDate(guestbookData.guestbookEntries);
+  function init() {
+    events.emit('scrollHandler:start');
+    guestbook.failedMessage.classList.add('u-hidden');
+    getEntriesPage();
+  }
 
-    // Create DOM fragment
-    let fragment = document.createDocumentFragment();
+  function getEntriesPage() {
+    guestbook.throbber.classList.remove('u-hidden'); // Start loading animation
+    events.emit('scrollHandler:stop'); // Prevent function getting called again from scroll events
 
-    // For each date:
-    let counter = { count: 1, max: guestbookData.length };
-    guestbookData.forEach(function(sectionData) {
-      // Create section
-      let section = new Section(moment(sectionData.date).format("dddd Do MMMM YYYY"));
-      // Add each entry to section
-      sectionData.entries.forEach(function(entryData) {
-        let entry = new Entry(entryData.name, entryData.location, entryData.comment);
-        section.addEntry(entry.nodeTree);
+    fetch(`http://192.168.0.69:3000/api/guestbook/?page=${currentPage}&limit=${pageLimit}`)
+    .then(response => response.json())
+    .then(response => {
+      const { guestbookEntries, count } = response;
+      const fragment = document.createDocumentFragment();
+
+      guestbookEntries.forEach(entry => {
+        const { name, location, date, comment } = entry;
+        // When handling a new month insert header to fragment
+        let currentMonthYear = moment(date).format('MMMM YYYY');
+        if (currentMonthYear != prevMonthYear) {
+          new GuestbookHeading(currentMonthYear).appendTo(fragment);
+          new Seperator().appendTo(fragment);
+          prevMonthYear = currentMonthYear;
+        }
+        // Insert guestbook entry to fragment
+        new GuestbookEntry(
+          name,
+          location,
+          moment(date).format("dddd Do MMMM"),
+          comment
+        ).appendTo(fragment);
+        // Insert seperator to fragment
+        new Seperator().appendTo(fragment);
+        // Then insert fragment to DOM
+        guestbook.content.append(fragment);
       });
-      // Add section to fragment
-      fragment.append(section.nodeTree);
-      // Add seperator to fragment if not last count of for loop
-      if (counter.count < counter.max) {
-        let seperator = new Seperator;
-        fragment.append(seperator.nodeTree);
-        counter.count++;
+      guestbook.throbber.classList.add('u-hidden'); // Stop loading animation
+
+      // increment current page and restart scroll events if more guestbook entries are potentially available
+      if (count == pageLimit) {
+        currentPage++;
+        events.emit('scrollHandler:start');
       }
+      else {
+        guestbook.failedMessage.innerHTML = 'No more guestbook entries are available';
+        guestbook.failedMessage.classList.remove('u-hidden');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      guestbook.throbber.classList.add('u-hidden'); // Stop loading animation
+      guestbook.failedMessage.classList.remove('u-hidden');
     });
-    
-    // Render fragment to page
-    guestbook.container.append(fragment);
   }
 
-  function groupByDate(guestbookData) {
-    let entriesByDate = [];
-    let buffer;
-    let loggedDate;
-    let counter = { count: 1, max: guestbookData.length };
-
-    guestbookData.forEach(function(entryData) {
-      // Check if processing a new date
-      if (entryData.date !== loggedDate) {
-        // If so log date, push buffer (if contains data) to date-grouped-array, clear and push new date and entry to buffer
-        loggedDate = entryData.date;
-        if (buffer) entriesByDate.push(buffer);
-        buffer = {
-          date: entryData.date,
-          entries: [entryData]
-        };
-      } else {
-        // else push entry to buffer
-        buffer.entries.push(entryData);
-      }
-      // Push buffer to date-grouped-array if counter maxxed, else increment
-      counter.count < counter.max ? counter.count++ : entriesByDate.push(buffer);
-    });
-    return entriesByDate;
-  }
 })();

@@ -7,11 +7,35 @@
 	}
 }
 
+@mixin lf-spacing-vertical--full($gutter-size) {
+	& > * {
+		margin-bottom: $gutter-size;
+	}
+}
+
+@mixin lf-spacing-vertical--alt($gutter-size) {
+	& > * {
+		margin-top: $gutter-size;
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+}
+
 @mixin lf-spacing-horizontal($gutter-size) {
 	& > * {
 		margin-right: $gutter-size;
 		&:last-child {
 			margin-right: 0;
+		}
+	}
+}
+
+@mixin lf-spacing-horizontal--alt($gutter-size) {
+	& > * {
+		margin-left: $gutter-size;
+		&:first-child {
+			margin-left: 0;
 		}
 	}
 }

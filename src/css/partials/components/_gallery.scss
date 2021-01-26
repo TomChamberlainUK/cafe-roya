@@ -1,17 +1,41 @@
 .c-gallery {
-	@include af-pinboard;
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-row-gap: var(--spacing-loose);
-	width: 100%;
-	@media only screen and (min-width: 600px) {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		grid-column-gap: var(--spacing-loose);
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+
+	&__throbber-container {
+    margin: var(--spacing-loose) auto;
+		padding: 1rem;
+		border-radius: 100%;
+		background-color: var(--col-bg-sec);
+		
+		.o-throbber {
+			margin: 0;
+		}
 	}
 
+	&__failed-message {
+		margin: var(--spacing-loose) auto;
+		padding: var(--gutter-width);
+    background-color: var(--col-bg-sec);
+	}
+}
+
+.c-gallery-card {
+	background-color: var(--col-bg-sec);
+	// Force 4:3 aspect ratio
+	width: 100%;
+	padding-top: 75%;
+	position: relative;
+
 	&__image {
-		@include af-bordered-image;
+		padding: var(--gutter-width);
+    // For aspect ratio
 		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		box-sizing: border-box;
 	}
 }

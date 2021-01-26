@@ -1,14 +1,20 @@
+// Init
+const env = require('dotenv').config();
 const express = require('express');
-const app = express();
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const multer = require('multer');
+const app = express();
 
-const PORT = process.env.PORT || 3000;
+const config = {
+	HOST: process.env.HOST || 'localhost',
+	PORT: process.env.PORT || 3000
+}
 
+// Configure API routes
 const menuRoutes = require('./api/routes/menu');
 const dishesRoutes = require('./api/routes/dishes');
+const eventsRoutes = require('./api/routes/events');
 const guestbookRoutes = require('./api/routes/guestbook');
 const galleryRoutes = require('./api/routes/gallery');
 const configRoutes = require('./api/routes/config');
@@ -48,6 +54,7 @@ app.use((req, res, next) => {
 // Routes to handle API requests
 app.use('/api/menu', menuRoutes);
 app.use('/api/dishes', dishesRoutes);
+app.use('/api/events', eventsRoutes);
 app.use('/api/guestbook', guestbookRoutes);
 app.use('/api/gallery', galleryRoutes);
 app.use('/api/config', configRoutes);
@@ -69,4 +76,4 @@ app.use((error, req, res, next) => {
 
 
 // Start server
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}.`));
+app.listen(config.PORT, () => console.log(`Server listening on http://${config.HOST}:${config.PORT}`));

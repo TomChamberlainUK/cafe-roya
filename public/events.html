@@ -1,171 +1,158 @@
-<html>
-	<head>
-		<title>Events | Café Roya</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width initial-scale=1.0">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700&display=swap">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link rel="stylesheet" href="css/stylesheet.css">
-	</head>
-	<body>
-		
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events | Cafe Roya</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400%7COpen+Sans:700%7CMontserrat:700&display=swap">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="css/stylesheet.css">
+</head>
+<body>
+  <div class="c-pagewrap">
 
-		<script>
-		  window.fbAsyncInit = function() {
-		    FB.init({
-		      appId            : '204502270902704',
-		      autoLogAppEvents : true,
-		      xfbml            : true,
-		      version          : 'v6.0'
-		    });
-		    FB.api(
-			  '/100740744887263/events?fields=name,description,start_time,end_time,cover&access_token=EAAJbdSoFrx8BALpjwMz7FDBJm9ZCcZA8Cmr02dLupwuH5XMYJdO32xZBwAtrpwqJb19ZCJM05cZAPbVX1eCzJNRYpyF6YwVhifI7iohpHZACcftvtBCDnTQpYAyEJcZCoSRhShbwgfskWsnrSMZBH8QLdQySjvRO2hMpn3TZAIo7xJAZDZD',
-			  'GET',
-			  {"fields":"name,description,start_time,end_time,cover"},
-			  function(response) {
-			      // Insert your code here
-			      console.log(response);
-			      events.emit('facebook-loaded', response);
-			  }
-			);
-		  };
-		</script>
-		<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+		<div class="c-page-fader" id="js-page-fader"></div>
 
+		<nav class="c-navigation" id="js-navigation">
+			<a class="c-navigation__link" href="index.html">
+				<i class="material-icons">home</i>
+				<span class="c-navigation__link-heading">Home</span>
+			</a>
+			<a class="c-navigation__link" href="menu.html">
+				<i class="material-icons">restaurant</i>
+				<span class="c-navigation__link-heading">Menu</span>
+			</a>
+			<a class="c-navigation__link c-navigation__link--active" href="events.html">
+				<i class="material-icons">event</i>
+				<span class="c-navigation__link-heading">Events</span>
+			</a>
+			<a class="c-navigation__link" href="guestbook.html">
+				<i class="material-icons">menu_book</i>
+				<span class="c-navigation__link-heading">Guestbook</span>
+			</a>
+			<a class="c-navigation__link" href="gallery.html">
+				<i class="material-icons">photo_library</i>
+				<span class="c-navigation__link-heading">Gallery</span>
+			</a>
+			<a class="c-navigation__link" href="contact.html">
+				<i class="material-icons">contact_support</i>
+				<span class="c-navigation__link-heading">Contact</span>
+			</a>
+		</nav>
 
-		<div id="js-pagewrap" class="pagewrap">
-			<div class="js-page-fader"></div>
-			
+		<header class="c-page-header" id="js-page-header">
+			<button class="c-page-header__button" type="button" id="js-page-header__menu-btn">
+				<i class="material-icons">menu</i>
+			</button>
+			<img class="c-page-header__logo l-flex__item--center" src="images/logo_horizontal_white.svg" alt="Cafe Roya Logo">
+			<button class="c-page-header__button" type="button" id="js-page-header__sizing-btn">
+				<i class="material-icons">format_size</i>
+			</button>
+		</header>
 
-			<header class="c-page-header">
-				<div class="c-page-header__left">
-					<button class="js-menu-btn c-page-header__icon c-page-header__icon--button">
-						<i class="material-icons">menu</i>
-					</button>
-				</div>
-				<div class="c-page-header__center">
-					<img class="c-page-header__logo" src="images/logo_horizontal_white.svg" alt="Cafe Roya Logo">
-				</div>
-				<div class="c-page-header__right">
-					<a href="tel:01159221902" class="c-page-header__icon c-page-header__icon--link">
-						<i class="material-icons">phone</i>
-					</a>
-				</div>
-			</header>
-
-			<nav id="js-navigation" class="c-navigation">
-				<a class="c-navigation__link" href="index.html">
-					<i class="material-icons">home</i>
-					<h2 class="c-navigation__link-heading">Home</h2>
-				</a>
-				<a class="c-navigation__link" href="menu.html">
-					<i class="material-icons">restaurant</i>
-					<h2 class="c-navigation__link-heading">Menu</h2>
-				</a>
-				<a class="c-navigation__link c-navigation__link--active" href="events.html">
-					<i class="material-icons">event</i>
-					<h2 class="c-navigation__link-heading">Events</h2>
-				</a>
-				<a class="c-navigation__link" href="gallery.html">
-					<i class="material-icons">photo_library</i>
-					<h2 class="c-navigation__link-heading">Gallery</h2>
-				</a>
-				<a class="c-navigation__link" href="guestbook.html">
-					<i class="material-icons">menu_book</i>
-					<h2 class="c-navigation__link-heading">Guestbook</h2>
-				</a>
-				<a class="c-navigation__link" href="contact.html">
-					<i class="material-icons">contact_support</i>
-					<h2 class="c-navigation__link-heading">Contact</h2>
-				</a>
-			</nav>
-
-			<div class="c-page-content">
-				<div class="o-textbox">
-					<h1 class="o-textbox__heading">Events</h1>
-					<p class="o-textbox__body">
-						Got a free Sunday coming up in your calendar?<br>
-						<br>
-						We regularly host exciting events with some of our local partners.<br>
-						<br>
-						Whether its live-music, tequila-tasting, or our classic Persian brunch—there’s something for everyone, every week, at Café Roya.
-					</p>
-				</div>
-				
-				<img class="c-page-content__doodle" src="images/sugar_skull.png" alt="IMAGE DESCRIPTION">
-
-				<div class="c-events-list js-masonry-grid js-events-list">
-
-
-					<template class="js-events-list__event-card-template">
-						<div class="c-events-list__event-card js-masonry-grid__item">
-							<div class="c-events-list__image-frame">
-								<img class="c-events-list__image js-events-list__image" src="">
-							</div>
-							<div class="c-events-list__descriptor">
-								<h2 class="c-events-list__name">
-									<a class="c-events-list__name--link js-events-list__name" href=""></a>
-								</h2>
-								<p class="c-events-list__description js-events-list__description"></p>
-								<h3 class="c-events-list__date">
-									<span class="js-events-list__start-time"></span>
-									 - 
-									<span class="js-events-list__end-time"></span>
-									 | 
-									<span class="js-events-list__date"></span>
-								</h3>
-							</div>
-						</div>
-					</template>
-
-
-					<div class="js-masonry-grid__column js-masonry-grid__column--1"></div>
-					<div class="js-masonry-grid__column js-masonry-grid__column--2"></div>
-				</div>
-				
-
-				<div class="c-comment-card js-comment-card">
-					<p class="c-comment-card__comment js-comment-card__comment">“Delicious vegan food—full marks to everyone!”</p>
-					<p class="c-comment-card__details">
-						<span class="js-comment-card__name">Hazel Birchenough</span>
-						 | 
-						<span class="js-comment-card__date">11th October 2019</span>
-					</p>
-				</div>
-				
-			</div>
-
-
-
-			<footer class="c-page-footer">
-				<div class="c-page-footer__content">
-					<div class="c-page-footer__social-icons-list">
-						<a class="c-page-footer__social-icon" href="https://www.facebook.com/CafeRoya130/" target="_blank">
-							<img class="o-social-icon" src="images/icon_facebook_white.svg" alt="Facebook Icon">
-						</a>
-						<a class="c-page-footer__social-icon" href="https://www.instagram.com/caferoya130/" target="_blank">
-							<img class="o-social-icon" src="images/icon_instagram_white.svg" alt="Instagram Icon">
-						</a>
-						<a class="c-page-footer__social-icon" href="https://twitter.com/caferoya/" target="_blank">
-							<img class="o-social-icon" src="images/icon_twitter_white.svg" alt="Twitter Icon">
-						</a>
-					</div>
-					<div class="c-page-footer__seperator"></div>
-					<img class="c-page-footer__logo" src="images/logo_vertical_white.svg" alt="Cafe Roya Logo">
-				</div>
-			</footer>
-
-
-
+		<div class="c-page-banner u-hidden" id="js-page-banner">
+			<p class="c-page-banner__text-container o-caption o-caption--warning" id="js-page-banner__text-container">
+				<template id="js-page-banner__text-template">
+					<span class="c-page-banner__text js-page-banner__text"></span>
+				</template>
+			</p>
+			<button class="c-page-banner__button" type="button" id="js-page-banner__exit-btn">
+				<i class="material-icons">cancel</i>
+			</button>
 		</div>
 
-		<script src="js/vendor/moment.js"></script>
-		<script src="js/vendor/colcade.js"></script>
-		<script src="js/vendor/events-handler.js"></script>
+		<main class="c-page-content">
 
-		<script src="js/helpers.js"></script>
-		<script src="js/events.js"></script>
-		<script src="js/global.js"></script>
-		<script src="js/database-events.js"></script>
-	</body>
+			<section class="o-textbox">
+				<h1 class="o-textbox__heading">Events</h1>
+				<p class="o-textbox__body">
+					Got a free Sunday coming up in your calendar?<br><br>
+					We regularly host exciting events with some of our local partners.<br><br>
+					Whether its live-music, tequila-tasting, or our classic Persian brunch—there’s something for everyone, every week, at Café Roya.
+				</p>
+			</section>
+
+			<img class="c-page-content__doodle" src="images/sugar_skull.png" alt="Chalk Doodle">
+
+			<section class="c-content-container c-content-container--pinboard c-events" id="js-events">
+				<h2 class="u-hidden--accessible">Upcoming Events</h2>
+				<ul class="l-spacing-vertical--loose c-events__content l-full-width" id="js-events__content"></ul>
+				<div class="c-events__throbber-container u-hidden" id="js-events__throbber">
+					<div class="o-throbber"></div>
+				</div>
+				<p class="o-caption o-caption--centered c-events__failed-message" id="js-events__failed-message">
+					We ran into issues loading the events, sorry!<br>
+					<a class="o-caption--link" href="events.html">Refreshing the page</a> may solve this problem.<br>
+					Alternatively, check our <a class="o-caption--link" href="https://www.facebook.com/CafeRoya130/" target="_blank">Facebook</a> for upcoming events.
+				</p>
+			</section>
+
+		</main>
+		
+		<article class="c-comment-card u-hidden" id="js-comment-card">
+			<h2 class="u-hidden--accessible">Customer Comment</h2>
+			<p class="o-subheading o-subheading--alt o-subheading--centered" id="js-comment-card__comment"></p>
+			<p class="o-caption o-caption--alt o-caption--centered">
+				<span id="js-comment-card__name"></span>
+					| 
+				<span id="js-comment-card__location"></span>
+			</p>
+		</article>
+
+		<footer class="c-page-footer">
+			<div class="c-page-footer__content">
+				<nav class="c-page-footer__social-navigation">
+					<a class="c-page-footer__social-link" href="https://www.facebook.com/CafeRoya130/" target="_blank">
+						<img class="c-page-footer__social-icon" src="images/icon_facebook_white.svg" alt="Facebook Icon">
+					</a>
+					<a class="c-page-footer__social-link" href="https://www.instagram.com/caferoya130/" target="_blank">
+						<img class="c-page-footer__social-icon" src="images/icon_instagram_white.svg" alt="Instagram Icon">
+					</a>
+					<a class="c-page-footer__social-link" href="https://twitter.com/caferoya/" target="_blank">
+						<img class="c-page-footer__social-icon" src="images/icon_twitter_white.svg" alt="Twitter Icon">
+					</a>
+				</nav>
+				<hr class="o-seperator o-seperator--bold-alt c-page-footer__seperator">
+				<img class="c-page-footer__logo" src="images/logo_vertical_white.svg" alt="Cafe Roya Logo">
+			</div>
+		</footer>
+	</div>
+	
+	<template id="js-template__events-heading">
+		<h3 class="c-events__heading o-heading js-events-heading"></h3>
+	</template>
+
+  <template id="js-template__event-card">
+    <li class="c-event-card js-event-card">
+			<div class="c-event-card__image-wrapper">
+				<img class="c-event-card__image js-event-card__image" alt="Facebook event cover">
+			</div>
+			<div class="c-event-card__information">
+				<header class="l-spacing-tight">
+					<h4 class="o-heading">
+						<a class="c-event-card__heading o-heading--link js-event-card__name" target="_blank"></a>
+					</h4>
+					<br>
+					<p class="o-subheading">
+						<span class="js-event-card__start-time"></span> - 
+						<span class="js-event-card__end-time"></span> on 
+						<span class="js-event-card__date"></span>
+					</p>
+				</header>
+				<hr class="o-seperator">
+				<pre class="c-event-card__description o-body o-body--preformatted js-event-card__description"></pre>
+				<p class="o-subheading o-subheading--centered">
+					<a class="c-event-card__facebook-link js-event-card__facebook-link" target="_blank">See More</a>
+				</p>
+			</div>
+		</li>
+	</template>
+
+  <script src="js/vendor/events.js"></script>
+  <script src="js/vendor/moment.js"></script>
+
+  <script src="js/helpers.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/events.js"></script>
+</body>
 </html>

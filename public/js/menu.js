@@ -1,90 +1,50 @@
-const makeRequestTest = (url, method, data) => {
-
-  let xhr = new XMLHttpRequest();
-
-  return new Promise((resolve, reject) => {
-
-    // Validate parameters
-    if (!['GET', 'POST', 'PATCH', 'DELETE'].includes(method)) {
-      return reject({
-        status: 400,
-        statusText: `Method: ${method} is not a valid method.`
-      });
-    } else if ((['POST', 'PATCH'].includes(method)) && !data) {
-      return reject({
-        status: 400,
-        statusText: `POST and PATCH requests require data parameter.`
-      });
-    }
-
-    
-    xhr.onload = function() {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        // Successful
-        resolve(xhr.response);
-      } else {
-        // Failed
-        reject({
-          status: xhr.status,
-          statusText: xhr.statusText
-        });
-      }
-    }
-
-    // Setup HTTP request
-    xhr.open(method, url);
-
-    if (method == 'POST' || method == 'PATCH') {
-      // Set content-type to JSON if applicable
-      xhr.setRequestHeader('Content-Type', 'application/JSON');
-      // Send request with data
-      xhr.send(data);
-    } else {
-      // Send request
-      xhr.send();
-    }
-
-  });
-}
-
-
-
-
-
-const menu = (() => {
+const menu = (function() {
   // Cache DOM
-  const menu = document.querySelector('.js-menu');
-  menu.elements = {
-    starters: menu.querySelector('.js-menu__starters'),
-    mains: menu.querySelector('.js-menu__mains'),
-    desserts: menu.querySelector('.js-menu__desserts')
-  }
-
   const templates = {
-    dish: document.querySelector('#js-templates__dish')
+    menuEntry: document.querySelector('#js-template__menu-entry'),
+    seperator: document.querySelector('#js-template__seperator')
   }
+  const menu = {
+    starters: document.querySelector('#js-menu__starters'),
+    mains: document.querySelector('#js-menu__mains'),
+    desserts: document.querySelector('#js-menu__desserts'),
+  }
+  const loader = {
+    content: document.querySelector('#js-menu__content'),
+    throbber: document.querySelector('#js-menu__throbber'),
+    failedMessage: document.querySelector('#js-menu__failed-message')
+  }
+  // Configure
 
-  // Declare classes
-  class Dish {
+  // Define classes
+  class MenuEntry {
     constructor(name, description, dietaryOptions) {
-      this.template = templates.dish.content.cloneNode(true);
-      this.elements = {
-        root: this.template.querySelector('.js-menu__dish'),
-        name: this.template.querySelector('.js-menu__dish-name'),
-        description: this.template.querySelector('.js-menu__dish-description'),
-        dietaryOptions: this.template.querySelector('.js-menu__dish-dietaryOptions')
+      this.template = templates.menuEntry.content.cloneNode(true);
+      this.nodes = {
+        root: this.template.querySelector('.js-menu-entry'),
+        name: this.template.querySelector('.js-menu-entry__name'),
+        description: this.template.querySelector('.js-menu-entry__description'),
+        dietaryOptions: this.template.querySelector('.js-menu-entry__dietaryOptions')
       }
       // Render
-      this.elements.name.innerHTML = name;
-      this.elements.description.innerHTML = description;
-      this.elements.dietaryOptions.innerHTML = (() => {
-        let string = '';
-        if (dietaryOptions.includes('vegan')) string+= 'VO ';
-        if (dietaryOptions.includes('glutenFree')) string+= 'GFO ';
-        if (dietaryOptions.includes('nutFree')) string+= 'NFO ';
-        if (!string.length) string = ' ';
-        return string;
-      })();
+      this.nodes.name.innerHTML = name;
+      this.nodes.description.innerHTML = description;
+      this.nodes.dietaryOptions.innerHTML = dietaryOptions;
+    }
+    appendTo(target) {
+      target.append(this.nodes.root);
+    }
+  }
+
+  class Seperator {
+    constructor() {
+      this.template = templates.seperator.content.cloneNode(true);
+      this.nodes = {
+        root: this.template.querySelector('.js-seperator')
+      }
+    }
+    appendTo(target) {
+      target.append(this.nodes.root);
     }
   }
 
@@ -93,42 +53,70 @@ const menu = (() => {
 
   // Behaviour
   function init() {
-    // loadingAnimation.start(menu);
-    makeRequestTest('http://localhost:3000/api/menu/current', 'GET')
+    fetch('http://192.168.0.69:3000/api/menu/date/2020-10-15')
+    .then(response => response.json())
     .then(response => {
-      response = JSON.parse(response);
-
-      const fragments = {
-        starters: document.createDocumentFragment(),
-        mains: document.createDocumentFragment(),
-        desserts: document.createDocumentFragment()
+      if (!response.exists) {
+        console.error('Menu fetch request failed: No available menu for current month');
+        showNoMenuMessage();
       }
-
-      response.dishes.forEach(dish => {
-        const newDish = new Dish(dish.name, dish.description, dish.dietaryOptions);
-        switch (dish.course) {
-          case 'starter':
-            fragments.starters.append(newDish.elements.root);
-            break;
-          case 'main':
-            fragments.mains.append(newDish.elements.root);
-            break;
-          case 'dessert':
-            fragments.desserts.append(newDish.elements.root);
-            break;
-          default:
-            console.log('Failed to allocate dish to course', dish);
-        }
-      });
-
-      menu.elements.starters.append(fragments.starters);
-      menu.elements.mains.append(fragments.mains);
-      menu.elements.desserts.append(fragments.desserts);
-      // loadingAnimation.stop(menu);
+      else {
+        const { starters, mains, desserts } = response;
+        // Populate document fragments and add to dom
+        const startersFragment = buildCourseDocumentFragment(starters);
+        const mainsFragment = buildCourseDocumentFragment(mains);
+        const dessertsFragment = buildCourseDocumentFragment(desserts);
+        menu.starters.append(startersFragment);
+        menu.mains.append(mainsFragment);
+        menu.desserts.append(dessertsFragment);
+        showMenuContent();
+      }
     })
     .catch(error => {
-      console.log(error)
-      // loadingAnimation.stop(menu);
+      console.error(error);
+      showNoMenuMessage();
     });
+  }
+
+  function parseDietaries(array) {
+    if (!array.length) return '';
+    let string = '';
+    if (array.includes('vegan')) string += 'VO ';
+    if (array.includes('glutenFree')) string += 'GFO ';
+    if (array.includes('nutFree')) string += 'NFO ';
+    return string;
+  }
+
+  function buildCourseDocumentFragment(dishes) {
+    const fragment = document.createDocumentFragment();
+
+    dishes.forEach((dish, i) => {
+      new MenuEntry(
+        dish.name,
+        dish.description,
+        parseDietaries(dish.dietaryOptions)
+      )
+      .appendTo(fragment);
+      // Insert seperator if not last element
+      if (i + 1 < dishes.length)
+        new Seperator().appendTo(fragment);
+    });
+    return fragment;
+  }
+
+  function showNoMenuMessage(message) {
+    const { content, failedMessage, throbber } = loader;
+    if (message)
+      failedMessage.innerHTML = message;
+    throbber.classList.add('u-hidden');
+    content.classList.add('u-hidden');
+    failedMessage.classList.remove('u-hidden');
+  }
+
+  function showMenuContent() {
+    const { content, failedMessage, throbber } = loader;
+    throbber.classList.add('u-hidden');
+    failedMessage.classList.add('u-hidden');
+    content.classList.remove('u-hidden');
   }
 })();

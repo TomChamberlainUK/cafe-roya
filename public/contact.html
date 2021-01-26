@@ -1,176 +1,200 @@
-<html>
-	<head>
-		<title>Contact | Café Roya</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width initial-scale=1.0">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700&display=swap">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link rel="stylesheet" href="css/stylesheet.css">
-	</head>
-	<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Cafe Roya</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400%7COpen+Sans:700%7CMontserrat:700&display=swap">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="css/stylesheet.css">
+</head>
+<body>
+  <div class="c-pagewrap">
 
-		<div id="js-pagewrap" class="pagewrap">
-			<div class="js-page-fader"></div>
-			
+    <div class="c-page-fader" id="js-page-fader"></div>
 
-			<header class="c-page-header">
-				<div class="c-page-header__left">
-					<button class="js-menu-btn c-page-header__icon c-page-header__icon--button">
-						<i class="material-icons">menu</i>
-					</button>
-				</div>
-				<div class="c-page-header__center">
-					<img class="c-page-header__logo" src="images/logo_horizontal_white.svg" alt="Cafe Roya Logo">
-				</div>
-				<div class="c-page-header__right">
-					<a href="tel:01159221902" class="c-page-header__icon c-page-header__icon--link">
-						<i class="material-icons">phone</i>
-					</a>
-				</div>
-			</header>
+    <nav class="c-navigation" id="js-navigation">
+      <a class="c-navigation__link" href="index.html">
+        <i class="material-icons">home</i>
+        <span class="c-navigation__link-heading">Home</span>
+      </a>
+      <a class="c-navigation__link" href="menu.html">
+        <i class="material-icons">restaurant</i>
+        <span class="c-navigation__link-heading">Menu</span>
+      </a>
+      <a class="c-navigation__link" href="events.html">
+        <i class="material-icons">event</i>
+        <span class="c-navigation__link-heading">Events</span>
+      </a>
+      <a class="c-navigation__link" href="guestbook.html">
+        <i class="material-icons">menu_book</i>
+        <span class="c-navigation__link-heading">Guestbook</span>
+      </a>
+      <a class="c-navigation__link" href="gallery.html">
+        <i class="material-icons">photo_library</i>
+        <span class="c-navigation__link-heading">Gallery</span>
+      </a>
+      <a class="c-navigation__link c-navigation__link--active" href="contact.html">
+        <i class="material-icons">contact_support</i>
+        <span class="c-navigation__link-heading">Contact</span>
+      </a>
+    </nav>
 
-			<nav id="js-navigation" class="c-navigation">
-				<a class="c-navigation__link" href="index.html">
-					<i class="material-icons">home</i>
-					<h2 class="c-navigation__link-heading">Home</h2>
-				</a>
-				<a class="c-navigation__link" href="menu.html">
-					<i class="material-icons">restaurant</i>
-					<h2 class="c-navigation__link-heading">Menu</h2>
-				</a>
-				<a class="c-navigation__link" href="events.html">
-					<i class="material-icons">event</i>
-					<h2 class="c-navigation__link-heading">Events</h2>
-				</a>
-				<a class="c-navigation__link" href="gallery.html">
-					<i class="material-icons">photo_library</i>
-					<h2 class="c-navigation__link-heading">Gallery</h2>
-				</a>
-				<a class="c-navigation__link" href="guestbook.html">
-					<i class="material-icons">menu_book</i>
-					<h2 class="c-navigation__link-heading">Guestbook</h2>
-				</a>
-				<a class="c-navigation__link c-navigation__link--active" href="contact.html">
-					<i class="material-icons">contact_support</i>
-					<h2 class="c-navigation__link-heading">Contact</h2>
-				</a>
-			</nav>
+    <header class="c-page-header" id="js-page-header">
+      <button class="c-page-header__button" type="button" id="js-page-header__menu-btn">
+        <i class="material-icons">menu</i>
+      </button>
+      <img class="c-page-header__logo l-flex__item--center" src="images/logo_horizontal_white.svg" alt="Cafe Roya Logo">
+      <button class="c-page-header__button" type="button" id="js-page-header__sizing-btn">
+        <i class="material-icons">format_size</i>
+      </button>
+    </header>
 
-			<div class="c-page-content">
-				<div class="o-textbox">
-					<h1 class="o-textbox__heading">Contact</h1>
-					<p class="o-textbox__body">
-						Café Roya is located on Wollaton Road, near Beeston town-centre and just up the road from Sainsbury’s.<br>
-						<br>
-						We’re just a short five-minute walk from Beeston's Bus and Tram Interchange, easily accessible from just about anywhere in Nottingham.<br>
-						<br>
-						Travelling from far away? Leave a comment in our <a href="guestbook.html" class="o-textbox__body--link">guestbook</a>! We love hearing from our fellow food enthusiasts from all over the world.
-					</p>
-				</div>
-				
-				<img class="c-page-content__doodle" src="images/sugar_skull.png" alt="IMAGE DESCRIPTION">
+    <div class="c-page-banner u-hidden" id="js-page-banner">
+      <p class="c-page-banner__text-container o-caption o-caption--warning" id="js-page-banner__text-container">
+        <template id="js-page-banner__text-template">
+          <span class="c-page-banner__text js-page-banner__text"></span>
+        </template>
+      </p>
+      <button class="c-page-banner__button" type="button" id="js-page-banner__exit-btn">
+        <i class="material-icons">cancel</i>
+      </button>
+    </div>
 
-				<div class="c-map">
-					<iframe class="c-map__embedded-map" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ2SQ5m8HpeUgRoQNPBOh14S0&key=AIzaSyAr0AjNwCp3o4LoKRlEokScfWcbansMgP4" allowfullscreen></iframe>
-				</div>
+    <main class="c-page-content">
 
-				<div class="o-textbox">
-					<h1 class="o-textbox__subheading">Contact Details</h1>
-					<p class="o-textbox__body">
-						130 Wollaton Road
-						<br>
-						Beeston
-						<br>
-						Nottingham
-						<br>
-						NG9 2PE
-						<br>
-						<a href="tel:01159221902" class="o-textbox__body--link">0115 922 1902</a>
-					</p>
-				</div>
-				<div class="c-page-content__seperator"></div>
-				<div class="o-textbox">
-					<h1 class="o-textbox__subheading">Opening Times</h1>
-					<p class="o-textbox__body">
-						Monday - Saturday<br>
-						Lunch 12:00 - 14:30<br>
-						Dinner 17:30 - 21:30<br>
-						Check <a href="events.html" class="o-textbox__body--link">Events</a> for Sundays
-					</p>
-				</div>
-				<div class="c-page-content__seperator"></div>
-				<div class="o-textbox">
-					<h1 class="o-textbox__subheading">Accessibility</h1>
-					<p class="o-textbox__body">
-						At Café Roya we aim to cater to our customers every need.<br>
-						<br>
-						We have a ramp for wheelchair access as well as a disabled bathroom located on the ground floor.<br>
-						<br>
-						If you have any special needs during your visit, please don’t hesitate to give us a call on <a href="tel:01159221902" class="o-textbox__body--link">0115 922 1902</a> and we will do our best to cater for you.
-					</p>
-				</div>
-				<div class="c-enquiry-form">
-					<h1 class="c-enquiry-form__heading">Enquiries</h1>
-					<div class="c-enquiry-form__grouped-section">
-						<h2 class="c-enquiry-form__subheading">Name</h2>
-						<input class="c-enquiry-form__input-field" placeholder="Full name">
-					</div>
-					<div class="c-enquiry-form__grouped-section">
-						<h2 class="c-enquiry-form__subheading">Contact Number</h2>
-						<input class="c-enquiry-form__input-field" placeholder="(+##)#######">
-					</div>
-					<div class="c-enquiry-form__grouped-section">
-						<h2 class="c-enquiry-form__subheading">Email Address</h2>
-						<input class="c-enquiry-form__input-field" placeholder="example@example.com">
-					</div>
-					<div class="c-enquiry-form__grouped-section">
-						<h2 class="c-enquiry-form__subheading">Enquiry Details</h2>
-						<textarea class="c-enquiry-form__input-field c-enquiry-form__input-field--large" placeholder="Please provide as much detail as possible"></textarea>
-					</div>
-					<button class="c-enquiry-form__submit-button">Submit</button>
-				</div>
-				
+      <section class="o-textbox">
+        <h1 class="o-textbox__heading">Contact</h1>
+        <p class="o-textbox__body">
+          Café Roya is located on Wollaton Road, near Beeston town-centre and just up the road from Sainsbury’s.<br><br>
+          We’re just a short five-minute walk from Beeston's Bus and Tram Interchange, easily accessible from just about anywhere in Nottingham.<br><br>
+          Travelling from far away? Leave a comment in our <a href="guestbook.html" class="o-textbox__body--link">Guestbook</a>! We love hearing from our fellow food enthusiasts from all over the world.
+        </p>
+      </section>
+      
+      <img class="c-page-content__doodle" src="images/sugar_skull.png" alt="Chalk Doodle">
 
-				<div class="c-comment-card js-comment-card">
-					<p class="c-comment-card__comment js-comment-card__comment">“Delicious vegan food—full marks to everyone!”</p>
-					<p class="c-comment-card__details">
-						<span class="js-comment-card__name">Hazel Birchenough</span>
-						 | 
-						<span class="js-comment-card__date">11th October 2019</span>
-					</p>
-				</div>
-				
-			</div>
+      <section class="c-map">
+        <h2 class="u-hidden--accessible">Map</h2>
+        <iframe class="c-map__embedded-map" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ2SQ5m8HpeUgRoQNPBOh14S0&key=AIzaSyAr0AjNwCp3o4LoKRlEokScfWcbansMgP4" allowfullscreen></iframe>
+      </section>
 
+      <section class="o-textbox">
+        <h2 class="o-textbox__subheading">Address</h2>
+        <address class="o-textbox__body">
+          130 Wollaton Road<br>
+          Beeston<br>
+          Nottingham<br>
+          NG9 2PE<br>
+          <a href="tel:01159221902" class="o-textbox__body--link">0115 922 1902</a>
+        </address>
+      </section>
 
+      <hr class="o-seperator o-seperator--alt o-seperator--indented">
 
-			<footer class="c-page-footer">
-				<div class="c-page-footer__content">
-					<div class="c-page-footer__social-icons-list">
-						<a class="c-page-footer__social-icon" href="https://www.facebook.com/CafeRoya130/" target="_blank">
-							<img class="o-social-icon" src="images/icon_facebook_white.svg" alt="Facebook Icon">
-						</a>
-						<a class="c-page-footer__social-icon" href="https://www.instagram.com/caferoya130/" target="_blank">
-							<img class="o-social-icon" src="images/icon_instagram_white.svg" alt="Instagram Icon">
-						</a>
-						<a class="c-page-footer__social-icon" href="https://twitter.com/caferoya/" target="_blank">
-							<img class="o-social-icon" src="images/icon_twitter_white.svg" alt="Twitter Icon">
-						</a>
-					</div>
-					<div class="c-page-footer__seperator"></div>
-					<img class="c-page-footer__logo" src="images/logo_vertical_white.svg" alt="Cafe Roya Logo">
-				</div>
-			</footer>
+      <section class="o-textbox" id="js-opening-times">
+        <h2 class="o-textbox__subheading">Opening Times</h2>
+        <p class="o-textbox__body" id="js-opening-times__error">
+          Our opening times are currently unavailable, sorry!<br>
+          Try checking our <a href="https://www.facebook.com/CafeRoya130/" target="_blank" class="o-textbox__body--link">Facebook</a>
+        </p>
+        <p class="o-textbox__body u-hidden" id="js-opening-times__content">
+          <span id="js-opening-times__days-start">Monday</span> - <span id="js-opening-times__days-end">Saturday</span><br>
+          Lunch: <span id="js-opening-times__lunch-start">12:00</span> - <span id="js-opening-times__lunch-end">14:30</span><br>
+          Dinner: <span id="js-opening-times__dinner-start">17:30</span> - <span id="js-opening-times__dinner-end">21:30</span><br>
+          Check <a href="events.html" class="o-textbox__body--link">Events</a> for Sundays
+        </p>
+      </section>
 
+      <hr class="o-seperator o-seperator--alt o-seperator--indented">
 
+      <section class="o-textbox">
+        <h2 class="o-textbox__subheading">Accessibility</h2>
+        <p class="o-textbox__body">
+          At Café Roya we aim to cater to our customers every need.<br><br>
+          We have a ramp for wheelchair access as well as a disabled bathroom located on the ground floor.<br><br>
+          If you have any special needs during your visit, please don’t hesitate to give us a call on <a href="tel:01159221902" class="o-textbox__body--link">0115 922 1902</a> and we will do our best to cater for you.
+        </p>
+      </section>
 
-		</div>
-		
-		<script src="js/vendor/moment.js"></script>
-		<script src="js/vendor/events-handler.js"></script>
+      <section class="c-content-container c-content-container--clipboard l-spacing-vertical--loose">
 
-		<script src="js/helpers.js"></script>
-		<script src="js/global.js"></script>
-		<script src="js/database-events.js"></script>
-	</body>
+        <header class="l-spacing-vertical--loose">
+          <h2 class="o-heading">Enquiries</h2>
+          <hr class="o-seperator o-seperator--bold">
+        </header>
+
+        <form class="l-spacing-vertical--regular" id="js-enquiries-form" novalidate>
+
+          <div class="c-form-control js-form-control">
+            <label class="c-form-control__name" for="js-enquiries-form__name">Name</label>
+            <p class="c-form-control__description">Please enter your full name</p>
+            <input class="c-form-control__input" type="text" name="name" placeholder="Testy McTesterson" id="js-enquiries-form__name">
+            <p class="c-form-control__error u-hidden js-form-control__error"></p>
+          </div>
+          
+          <div class="c-form-control js-form-control">
+            <label class="c-form-control__name" for="js-enquiries-form__telephone">Phone Number</label>
+            <p class="c-form-control__description">We will contact you via phone or email</p>
+            <input class="c-form-control__input" type="tel" name="telephone" placeholder="07123456789" id="js-enquiries-form__telephone">
+            <p class="c-form-control__error u-hidden js-form-control__error"></p>
+          </div>
+          
+          <div class="c-form-control js-form-control">
+            <label class="c-form-control__name" for="js-enquiries-form__enquiry">Enquiry</label>
+            <p class="c-form-control__description">How can we help?</p>
+            <textarea class="c-form-control__text-area" name="enquiry" id="js-enquiries-form__enquiry"></textarea>
+            <p class="c-form-control__error u-hidden js-form-control__error"></p>
+          </div>
+
+          <button class="o-button" id="js-enquiries-form__submit-btn" type="submit">
+            <span class="js-button__text">Send</span>
+            <div class="o-throbber o-throbber--small o-throbber--white u-hidden js-button__throbber"></div>
+          </button>
+
+        </form>
+
+        <p class="o-caption o-caption--centered" id="js-enquiries-form__email-error-message"></p>
+
+      </section>
+
+    </main>
+    
+    <article class="c-comment-card u-hidden" id="js-comment-card">
+      <h2 class="u-hidden--accessible">Customer Comment</h2>
+      <p class="o-subheading o-subheading--alt o-subheading--centered" id="js-comment-card__comment"></p>
+      <p class="o-caption o-caption--alt o-caption--centered">
+        <span id="js-comment-card__name"></span>
+          | 
+        <span id="js-comment-card__location"></span>
+      </p>
+    </article>
+
+    <footer class="c-page-footer">
+      <div class="c-page-footer__content">
+        <nav class="c-page-footer__social-navigation">
+          <a class="c-page-footer__social-link" href="https://www.facebook.com/CafeRoya130/" target="_blank">
+            <img class="c-page-footer__social-icon" src="images/icon_facebook_white.svg" alt="Facebook Icon">
+          </a>
+          <a class="c-page-footer__social-link" href="https://www.instagram.com/caferoya130/" target="_blank">
+            <img class="c-page-footer__social-icon" src="images/icon_instagram_white.svg" alt="Instagram Icon">
+          </a>
+          <a class="c-page-footer__social-link" href="https://twitter.com/caferoya/" target="_blank">
+            <img class="c-page-footer__social-icon" src="images/icon_twitter_white.svg" alt="Twitter Icon">
+          </a>
+        </nav>
+        <hr class="o-seperator o-seperator--bold-alt c-page-footer__seperator">
+        <img class="c-page-footer__logo" src="images/logo_vertical_white.svg" alt="Cafe Roya Logo">
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="js/vendor/events.js"></script>
+  <script src="js/vendor/moment.js"></script>
+
+  <script src="js/helpers.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/contact.js"></script>
+</body>
 </html>

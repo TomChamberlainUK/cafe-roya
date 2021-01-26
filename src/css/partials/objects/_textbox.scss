@@ -1,6 +1,6 @@
 .o-textbox {
 	@include lf-padded-child;
-	@include lf-spacing-vertical(var(--spacing-regular));
+	@include lf-spacing-vertical--alt(var(--spacing-regular));
 	max-width: 37rem;
 	text-align: center;
 
@@ -10,7 +10,6 @@
 
 	&__subheading {
 		@include tf-subheading(var(--col-t1-pri));
-		margin-bottom: var(--spacing-tight);
 	}
 
 	&__body {

@@ -20,6 +20,7 @@
 	--col-t4-ter: #{$tertiary-text-faded};
 	// Accent
 	--col-accent: #{$accent-color};
+	--col-warning: #{$warning-color};
 
 	// Layout
 	// Structure
@@ -31,26 +32,38 @@
 	// Gutters
 	--gutter-width: 1rem;
 
-
 	@media only screen and (min-width: 600px) {
 		--gutter-width: 1.5rem;
+	}
+
+	@media only screen and (min-width: 1200px) {
+		--gutter-width: 2rem;
 	}
 }
 
 html, body {
 	width: 100%;
+	height: 100%;
 }
 
-body {
+html {
 	background-color: var(--col-bg-pri);
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	overflow-wrap: break-word;
 	-webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+
+	&.u-accessibility-mode {
+		font-size: 24px;
+	}
 }
 
-.pagewrap {
-	width: 100%;
-	overflow-x: hidden;
+.c-pagewrap {
+width: 100%;
+overflow-x: hidden;
+}
+
+.material-icons {
+	font-size: 1.5rem;
 }

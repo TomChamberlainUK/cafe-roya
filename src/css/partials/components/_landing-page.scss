@@ -1,43 +1,158 @@
-.c-landing-page {
-	position: relative;
-	box-sizing: border-box;
-	margin: 0 auto;
-	margin-top: 3.25rem;
-	padding: var(--gutter-width) 0;
-	width: 100%;
-	max-width: var(--page-content-width);
-	height: calc(100% - 3.25rem);
+// .c-landing-page {
+//     position: relative;
+//     box-sizing: border-box;
+//     margin: 0 auto;
+//     margin-top: 3.25rem;
+//     padding: var(--gutter-width) 0;
+//     width: 100%;
+//     max-width: var(--page-content-width);
+//     height: calc(100% - 3.25rem);
+  
+//     &__content {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       box-sizing: border-box;
+//       padding: 0 var(--gutter-width);
+//       width: 100%;
+//       height: 100%;
+//       background-image: url("../images/peashoots.svg");
+//       background-position: top right;
+//       background-size: auto 100%;
+//       background-repeat: no-repeat;
+//     }
 
-	&__background {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		box-sizing: border-box;
-		padding: 0 var(--gutter-width);
-		width: 100%;
-		height: 100%;
-		background-image: url("../images/peashoots.svg");
-		background-position: top right;
-		background-size: auto 100%;
-		background-repeat: no-repeat;
+
+
+
+
+
+
+
+//   // width: 100%;
+//   // height: calc(100% - 3.25rem);
+//   // background-color: red;
+
+//   // &__content {
+//   //   width: 100%;
+//   //   height: 100%;
+//   // }
+
+
+
+//   // display: flex;
+//   // align-items: center;
+//   // justify-content: center;
+//   // // box-sizing: border-box;
+//   // margin: 3.25rem auto 0 auto;
+//   // // padding: 1rem 0;
+//   // width: 100%;
+//   // height: 100%;
+//   // // max-width: var(--page-content-width);
+//   // // height: calc(100% - 3.25rem);
+//   // background-color: red;
+
+//   // background-image: url("../images/peashoots.svg");
+//   // // background-size: auto 100%;
+//   // background-repeat: no-repeat;
+//   // background-position: right;
+//   // background-origin: content-box;
+
+//   // &__content {
+//   //   @include lf-spacing-vertical(var(--spacing-loose));
+//   //   width: 37rem;
+//   // }
+
+//   // &__logo {
+//   //   max-width: 100%;
+//   // }
+
+//   // &__message {
+//   //   text-align: center;
+//   // }
+// }
+
+
+
+
+
+// .c-landing-page {
+// 	position: relative;
+// 	box-sizing: border-box;
+// 	margin: 0 auto;
+// 	margin-top: 3.25rem;
+// 	padding: var(--gutter-width) 0;
+// 	width: 100%;
+// 	max-width: var(--page-content-width);
+// 	height: calc(100% - 3.25rem);
+
+// 	&__background {
+// 		display: flex;
+// 		align-items: center;
+// 		justify-content: center;
+// 		box-sizing: border-box;
+// 		padding: 0 var(--gutter-width);
+// 		width: 100%;
+// 		height: 100%;
+// 		background-image: url("../images/peashoots.svg");
+// 		background-position: top right;
+// 		background-size: auto 100%;
+// 		background-repeat: no-repeat;
+// 	}
+
+// 	&__content {
+// 		@include lf-spacing-vertical(var(--spacing-loose));
+// 		display: flex;
+// 		flex-flow: column;
+// 		align-items: center;
+// 		width: 100%;
+// 		max-width: 37rem;
+// 		max-height: calc(62% + 6rem);
+// 	}
+
+// 	&__logo {
+		
+// 	}
+
+// 	&__info {
+// 		@include lf-spacing-vertical(var(--spacing-tight));
+// 		width: 100%;
+// 	}
+// }
+
+.c-landing-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	margin-top: 3.25rem; // navbar size
+	padding: 1rem;
+	width: 100%;
+	height: calc(100vh - 3.25rem);
+	background-image: url("../images/peashoots.svg");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: right;
+	background-origin: content-box;
+
+	@media screen and (max-width: 600px) {
+	// background-size: 100% auto;
+	// background-color: red;
 	}
+
 
 	&__content {
 		@include lf-spacing-vertical(var(--spacing-loose));
-		display: flex;
-		flex-flow: column;
-		align-items: center;
-		width: 100%;
-		max-width: 37rem;
-		max-height: calc(62% + 6rem);
+		box-sizing: border-box;
+		padding: 0 var(--gutter-width);
+		width: 37rem;
 	}
 
 	&__logo {
-		
+		width: 100%;
 	}
 
-	&__info {
+	&__message {
 		@include lf-spacing-vertical(var(--spacing-tight));
-		width: 100%;
 	}
 }
