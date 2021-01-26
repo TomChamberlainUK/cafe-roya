@@ -1,0 +1,26 @@
+.o-seperator {
+  border: none;
+	width: 100%;
+	height: 0.0625rem;
+  background-color: var(--col-t4-sec);
+
+  &--alt {
+    background-color: var(--col-t4-pri);
+  }
+  
+  &--bold {
+    background-color: var(--col-t2-sec);
+    height: 0.125rem;
+  }
+
+  &--bold-alt {
+    background-color: var(--col-t2-pri);
+    height: 0.125rem;
+  }
+
+  &--indented {
+    margin-left: var(--gutter-width);
+    margin-right: var(--gutter-width);
+    width: calc(100% - 2 * var(--gutter-width));
+  }
+}

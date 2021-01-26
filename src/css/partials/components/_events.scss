@@ -1,0 +1,77 @@
+.c-events {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+  
+  &__heading {
+    background-color: white;
+    padding: var(--gutter-width);
+    display: block;
+  }
+
+	&__throbber-container {
+    margin: var(--spacing-loose) auto;
+		padding: 1rem;
+		border-radius: 100%;
+		background-color: var(--col-bg-sec);
+		
+		.o-throbber {
+			margin: 0;
+		}
+	}
+
+	&__failed-message {
+    margin: var(--spacing-loose) auto;
+		padding: var(--gutter-width);
+    background-color: var(--col-bg-sec);
+	}
+}
+
+.c-event-card {
+  display: grid;
+  gap: var(--gutter-width);
+  padding: var(--gutter-width);
+  background-color: var(--col-bg-sec);
+
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  &__image-wrapper {
+    background-color: black;
+    width: 100%;
+  }
+  
+	&__image {
+    width: 100%;
+		height: 100%;
+    object-fit: cover;
+	}
+
+  &__information {
+    @include lf-spacing-vertical(var(--spacing-regular));
+  }
+
+  &__heading {
+    // Line clamping, ie truncating long text with elipsis
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+  }
+
+  &__description {
+    // Line clamping, ie truncating long text with elipsis
+    @include line-clamp(3, 36, 960, 636);
+    @media screen and (max-width: 600px) {
+      -webkit-line-clamp: 6;
+    }
+  }
+
+  &__facebook-link {
+    @extend %discreet-link;
+    display: inline-block;
+    width: 100%;
+    color: var(--col-accent);
+  }
+}

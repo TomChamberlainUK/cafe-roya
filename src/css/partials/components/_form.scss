@@ -1,0 +1,62 @@
+.c-form-control {
+	@include lf-spacing-vertical(var(--spacing-tight));
+
+	&__name {
+		@include tf-subheading(var(--col-t1-sec));
+		display: block;
+	}
+
+	&__description {
+		@include tf-caption(var(--col-t3-sec));
+	}
+
+	&__error {
+		@include tf-caption(var(--col-warning));
+		font-weight: 700;
+	}
+
+	&__text-area {
+		@extend %discreet-input;
+		@include tf-body(var(--col-t2-sec));
+		box-sizing: border-box;
+		border: 0.0625rem solid var(--col-t4-sec);
+		padding: 1rem;
+		width: 100%;
+		height: 9rem;
+		resize: vertical;
+
+		&:focus {
+			border: 0.125rem solid var(--col-accent);
+			outline: none;
+		}
+
+		&.is-invalid {
+			border: 0.125rem solid var(--col-warning);
+		}
+	}
+
+	&__input {
+		@extend %discreet-input;
+		@include tf-body(var(--col-t2-sec));
+		display: block;
+		box-sizing: border-box;
+		border: 0.0625rem solid var(--col-t4-sec);
+		padding: 1rem;
+		padding: 1rem;
+		width: 100%;
+		height: 3rem;
+
+		&::placeholder {
+			@include tf-body(var(--col-t4-sec));
+		}
+
+		&:focus {
+			border: 0.125rem solid var(--col-accent);
+			outline: none;
+		}
+
+		&.is-invalid {
+			border: 0.125rem solid var(--col-warning);
+		}
+	}
+}

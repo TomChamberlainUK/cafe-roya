@@ -1,0 +1,38 @@
+.c-page-banner {
+	position: fixed;
+	top: 3.25rem;
+	z-index: 97;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	padding-left: 1rem;
+	width: 100%;
+	height: 2rem;
+	background-color: var(--col-warning);
+	white-space: nowrap;
+
+	&__text-container {
+		box-sizing: border-box;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	&__text {
+		@include transform(translate3d(0, 0, 0));
+		display: inline-block;
+		padding-right: var(--spacing-loose);
+	}
+
+	&__button {
+		@extend %discreet-button;
+		padding: 0 1rem;
+		color: white;
+		background-color: var(--col-warning);
+		cursor: pointer;
+
+		.material-icons {
+			font-size: 1rem;
+			line-height: 150%;
+		}
+	}
+}

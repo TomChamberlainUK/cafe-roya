@@ -1,0 +1,21 @@
+.u-scroll-hider {
+	overflow-y: hidden;
+	transition: max-height 0.25s, margin 0.25s;
+}
+
+.u-hidden {
+	display: none;
+}
+
+.u-hidden--accessible { // Hide from humans not bots
+	position: absolute; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height: 1px; width: 1px; 
+	margin: -1px; padding: 0; border: 0;
+	opacity: 0; // Avoid accessibility errors for contrast
+}
+
+.u-prevent-scroll {
+	overflow-y: hidden;
+}

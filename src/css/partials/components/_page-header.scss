@@ -1,0 +1,24 @@
+.c-page-header {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	display: grid;
+	grid-template-columns: 3.5rem auto 3.5rem;
+	align-items: center;
+	width: 100%;
+	height: 3rem;
+	border-bottom: solid 0.25rem white;
+	background-color: var(--col-bg-pri);
+	color: var(--col-t1-pri);
+
+	&__button {
+		@extend %discreet-button;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+	}
+
+	&__logo {
+		height: 1.5rem;
+	}
+}

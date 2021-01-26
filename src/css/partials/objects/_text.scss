@@ -1,0 +1,98 @@
+.o-heading {
+	@include tf-heading(var(--col-t1-sec));
+
+	&--link {
+		@extend %discreet-link;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	
+	&--alt {
+		color: var(--col-t1-pri)
+	}
+
+	&--centered {
+		text-align: center;
+	}
+}
+
+.o-subheading {
+	@include tf-subheading(var(--col-t1-sec));
+
+	&--link {
+		@extend %discreet-link;
+	}
+	
+	&--alt {
+		color: var(--col-t1-pri)
+	}
+
+	&--centered {
+		text-align: center;
+	}
+}
+
+.o-body {
+	@include tf-body(var(--col-t2-sec));
+	
+	&--alt {
+		color: var(--col-t2-pri)
+	}
+
+	&--link {
+		color: var(--col-accent);
+		font-weight: 700;
+	}
+
+	&--alt-link {
+		color: var(--col-t1-pri);
+		font-weight: 700;
+	}
+
+	&--centered {
+		text-align: center;
+	}
+
+	&--bold {
+		font-weight: 700;
+	}
+
+	&--preformatted {
+		white-space: pre-wrap;
+	}
+}
+
+.o-caption {
+	@include tf-caption(var(--col-t3-sec));
+	
+	&--alt {
+		color: var(--col-t3-pri)
+	}
+
+	&--link {
+		@extend %discreet-link;
+		color: var(--col-accent);
+		font-weight: 700;
+	}
+
+	&--warning {
+		font-weight: 700;
+		color: white;
+	}
+
+	&--centered {
+		text-align: center;
+	}
+}
+
+.o-footnote {
+	@include tf-caption(var(--col-t3-sec));
+	text-align: center;
+}
+
+.o-link {
+	@include tf-caption(var(--col-accent));
+	font-weight: 700;
+}

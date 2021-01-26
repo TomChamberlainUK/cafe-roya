@@ -1,0 +1,28 @@
+.o-throbber {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  width: 3rem;
+  height: 3rem;
+  border: solid 0.25rem var(--col-t4-sec);
+  border-top-color: var(--col-t1-sec);
+  border-radius: 50%;
+
+  animation: spinner 0.75s linear infinite;
+
+  &--small {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &--white {
+    border-color: var(--col-t4-pri);
+    border-top-color: var(--col-t1-pri);
+  }
+}
+
+@keyframes spinner {
+	to {
+		transform: rotate(360deg);
+	}
+}

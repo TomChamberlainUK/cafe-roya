@@ -1,0 +1,33 @@
+.c-content-container {
+  @include lf-padded-container;
+  width: calc(100% - 3rem);
+
+  @media only screen and (max-width: 60rem) {
+		width: calc(100% - 2 * var(--gutter-width));
+	}
+
+  &--clipboard {
+    @include af-clipboard;
+  }
+
+  &--pinboard {
+    @include af-pinboard;
+    padding: 0;
+    width: 100%;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  &__card { // Currently just for use in pinboard style
+    margin: var(--spacing-loose) auto;
+		padding: var(--gutter-width);
+    background-color: var(--col-bg-sec);
+
+    &--throbber {
+      border-radius: 100%;
+      padding: 1rem;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+.l-flex {
+	display: flex;
+	&--centered {
+		align-items: center;
+	}
+}
+
+.l-flex__item {
+	&--center {
+		margin: 0 auto;
+	}
+
+	&--right {
+		margin-left: auto;
+	}
+}
+
+.l-spacing-vertical {
+	@include lf-spacing-vertical(var(--gutter-width));
+
+	&--loose {
+		@include lf-spacing-vertical(var(--spacing-loose));
+	}
+
+	&--regular {
+		@include lf-spacing-vertical(var(--spacing-regular));
+	}
+
+	&--tight {
+		@include lf-spacing-vertical(var(--spacing-tight));
+	}
+}
+
+.l-spacing-horizontal {
+	@include lf-spacing-horizontal(var(--gutter-width));
+
+	&--loose {
+		@include lf-spacing-horizontal(var(--spacing-loose));
+	}
+
+	&--regular {
+		@include lf-spacing-horizontal(var(--spacing-regular));
+	}
+
+	&--tight {
+		@include lf-spacing-horizontal(var(--spacing-tight));
+	}
+}
+
+.l-full-width {
+	width: 100%;
+}
+
+.l-no-margin-top {
+	margin-top: 0;
+}

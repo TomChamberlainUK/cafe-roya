@@ -1,0 +1,94 @@
+.o-square-button {
+	@extend %discreet-button;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	@include tf-subheading(var(--col-t2-sec));
+	// border: solid var(--col-accent) 0.25rem;
+	cursor: pointer;
+
+	&:hover {
+		background-color: var(--col-accent);
+		color: white;
+	}
+
+	&--active {
+		background-color: var(--col-accent);
+		color: white;
+	}
+
+	&--disabled {
+		@include tf-subheading(var(--col-t4-sec));
+		// border: solid var(--col-t4-sec) 0.25rem;
+
+		&:hover {
+			@include tf-subheading(var(--col-t4-sec));
+			// border: solid var(--col-t4-sec) 0.25rem;
+			background-color: white;
+			cursor: default;
+		}	
+	}
+
+	&__icon {
+		&--hidden {
+			display: none;
+		}
+	}
+}
+
+.o-button {
+	@extend %discreet-button;
+	@include tf-subheading(var(--col-t1-pri));
+	box-sizing: border-box;
+	cursor: pointer;
+	width: 100%;
+	height: 3rem;
+	background-color: var(--col-accent);
+
+	&--alt {
+		@include tf-subheading(var(--col-t1-sec));
+		border: solid var(--col-accent) 0.25rem;
+		background-color: var(--col-bg-sec);
+	}
+
+	&--warning {
+		background-color: var(--col-warning);
+	}
+
+	&--warning-alt {
+		@include tf-subheading(var(--col-t1-sec));
+		border: solid var(--col-warning) 0.25rem;
+		background-color: var(--col-bg-sec);
+	}
+
+	&--disabled {
+		@include tf-subheading(var(--col-t4-sec));
+		border: solid var(--col-t4-sec) 0.25rem;
+		background-color: white;
+
+		&:hover {
+			@include tf-subheading(var(--col-t4-sec));
+			border: solid var(--col-t4-sec) 0.25rem;
+			background-color: white;
+			cursor: default;
+		}	
+	}
+
+	&--fit-content {
+		padding: 0 var(--gutter-width);
+		width: auto;
+	}
+
+	&--with-icon {
+		@include lf-spacing-horizontal(var(--spacing-regular));
+		display: flex;
+	}
+}
+
+.o-button-container {
+	@include lf-spacing-horizontal(var(--gutter-width));
+	display: flex;
+}
