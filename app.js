@@ -7,8 +7,9 @@ const mongoose = require('mongoose');
 const app = express();
 
 const config = {
-	HOST: process.env.HOST || 'localhost',
-	PORT: process.env.PORT || 3000
+	HOST: process.env.HOST || '0.0.0.0',
+	PORT: process.env.PORT || 3000,
+	MONGO_URI: process.env.MONGO_URI || 'mongodb://0.0.0.0/test'
 }
 
 // Configure API routes
@@ -21,7 +22,7 @@ const configRoutes = require('./api/routes/config');
 
 
 // Init database
-mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(config.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
