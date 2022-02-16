@@ -114,7 +114,7 @@
 
       if (eventsResponse.error) {
         console.warn('Failed to fetch noticeboard events from Facebook.');
-      } else {
+      } else if (eventsResponse.data && eventsResponse.data.length) {
         events = eventsResponse.data.sort((a, b) => new Date(a.start_time) - new Date (b.start_time)); // sort events chronologically
       }
       

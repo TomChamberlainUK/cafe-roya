@@ -79,6 +79,7 @@ const eventCards = (function() {
   }
 
   function renderEvents(events) {
+    if (!events || !events.length) return;
     // Init fragment
     const fragment = document.createDocumentFragment();
     // sort chronologically and add each event to fragment
