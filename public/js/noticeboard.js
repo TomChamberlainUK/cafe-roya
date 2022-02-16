@@ -50,7 +50,7 @@
         image: this.template.querySelector('.js-noticeboard-gallery-card__image')
       }
       // Render
-      this.nodes.image.src = `http://192.168.0.69:3000/${path}`;
+      this.nodes.image.src = `/${path}`;
       if (description) // Set alt if applicable
         this.nodes.image.alt = description;
      }
@@ -97,8 +97,8 @@
   function init() {
     // Get gallery images
     Promise.allSettled([
-      fetch(`http://192.168.0.69:3000/api/gallery/?limit=3`).then(response => response.json()),
-      fetch('http://192.168.0.69:3000/api/events').then(response => response.json())
+      fetch(`/api/gallery/?limit=3`).then(response => response.json()),
+      fetch('/api/events').then(response => response.json())
     ])
     .then(response => {
       const imagesResponse = response[0].value;

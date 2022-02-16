@@ -46,7 +46,7 @@
 
 //   // Behaviour
 //   function init() {
-//     fetch('http://192.168.0.69:3000/api/config')
+//     fetch('http://0.0.0.0:3000/api/config')
 //     .then(response => response.json())
 //     .then(response => {
 //       const { openingDays, lunchHours, dinnerHours, closingDates } = response;
@@ -162,7 +162,7 @@
 
   // Behaviour
   function init() {
-    fetch('http://192.168.0.69:3000/api/config')
+    fetch('/api/config')
     .then(response => response.json())
     .then(response => {
       const { lunchHours, dinnerHours } = response;

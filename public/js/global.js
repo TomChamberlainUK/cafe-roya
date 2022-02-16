@@ -120,7 +120,7 @@ const commentCard = (function() {
   // Behaviour
   function init() {
     const randomInt = Math.floor(Math.random() * 10);
-    fetch(`http://192.168.0.69:3000/api/guestbook/?limit=1&page=${randomInt}`)
+    fetch(`/api/guestbook/?limit=1&page=${randomInt}`)
     .then(response => response.json())
     .then(response => {
       const { comment, name, location } = response.guestbookEntries[0];
@@ -187,7 +187,7 @@ const pageBanner = (function() {
 
   // Behaviour
   function init() {
-    fetch('http://192.168.0.69:3000/api/config')
+    fetch('/api/config')
     .then(response => response.json())
     .then(response => {
       const { closingDates } = response;

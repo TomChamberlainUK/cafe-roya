@@ -64,7 +64,7 @@ const eventCards = (function() {
     failedMessage.classList.add('u-hidden');
     throbber.classList.remove('u-hidden');
     // Fetch events
-    fetch('http://192.168.0.69:3000/api/events')
+    fetch('/api/events')
     .then(response => response.json())
     .then(response => {
       if (response.error) throw 'Failed to fetch events from Facebook';

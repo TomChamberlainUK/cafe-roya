@@ -23,7 +23,7 @@ const openingTimes = (function() {
 
   // Behaviour
   function init() {
-    fetch('http://192.168.0.69:3000/api/config')
+    fetch('/api/config')
     .then(response => response.json())
     .then(response => {
       const { openingDays, lunchHours, dinnerHours } = response;

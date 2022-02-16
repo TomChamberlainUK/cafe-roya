@@ -53,7 +53,7 @@ const menu = (function() {
 
   // Behaviour
   function init() {
-    fetch('http://192.168.0.69:3000/api/menu/date/2020-10-15')
+    fetch('/api/menu/current')
     .then(response => response.json())
     .then(response => {
       if (!response.exists) {

@@ -81,7 +81,7 @@ const guestbook = (function() {
     guestbook.throbber.classList.remove('u-hidden'); // Start loading animation
     events.emit('scrollHandler:stop'); // Prevent function getting called again from scroll events
 
-    fetch(`http://192.168.0.69:3000/api/guestbook/?page=${currentPage}&limit=${pageLimit}`)
+    fetch(`/api/guestbook/?page=${currentPage}&limit=${pageLimit}`)
     .then(response => response.json())
     .then(response => {
       const { guestbookEntries, count } = response;

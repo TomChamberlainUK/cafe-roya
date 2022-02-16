@@ -23,7 +23,7 @@ const gallery = (function() {
         image: this.template.querySelector('.js-gallery-card__image')
       }
       // Render
-      this.nodes.image.src = `http://192.168.0.69:3000/${path}`;
+      this.nodes.image.src = `/${path}`;
       if (description) // Set alt if applicable
         this.nodes.image.alt = description;
     }
@@ -48,7 +48,7 @@ const gallery = (function() {
     gallery.throbber.classList.remove('u-hidden'); // Start loading animation
     events.emit('scrollHandler:stop'); // Prevent function getting called again from scroll events
 
-    fetch(`http://192.168.0.69:3000/api/gallery/?page=${currentPage}&limit=${pageLimit}`)
+    fetch(`/api/gallery/?page=${currentPage}&limit=${pageLimit}`)
     .then(response => response.json())
     .then(response => {
       const { images, count } = response;
