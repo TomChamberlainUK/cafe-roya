@@ -6,6 +6,10 @@ const moment = require('moment');
 
 const Config = require('../models/config');
 
+// Get env variables
+const SITE_URL = process.env.SITE_URL || 'http://0.0.0.0';
+const PORT = process.env.PORT || 3000;
+
 // Generic
 router.get('/', (req, res, next) => {
 	Config.findOne()
@@ -36,7 +40,7 @@ router.patch('/', (req, res, next) => {
 			updated: { ...updateOps },
 			request: {
 				type: 'GET',
-				url: 'http://localhost:3000/api/config'
+				url: `${SITE_URL}:${PORT}/api/config`
 			}
 		})
 	})

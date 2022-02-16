@@ -6,6 +6,10 @@ const moment = require('moment');
 
 const Dish = require('../models/dishes');
 
+// Get env variables
+const SITE_URL = process.env.SITE_URL || 'http://0.0.0.0';
+const PORT = process.env.PORT || 3000;
+
 // Request handling endpoints
 // GET requests
 router.get('/', (req, res, next) => {
@@ -58,7 +62,7 @@ router.get('/', (req, res, next) => {
 					menus: doc.menus,
 					request: {
 						type: 'GET',
-						url: 'http://localhost:3000/api/dishes/' + doc._id
+						url: `${SITE_URL}:${PORT}/api/dishes/${doc._id}`
 					}
 				}
 			})

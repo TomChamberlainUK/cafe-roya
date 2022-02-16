@@ -6,6 +6,10 @@ const moment = require('moment');
 
 const GuestbookEntry = require('../models/guestbook_entries');
 
+// Get env variables
+const SITE_URL = process.env.SITE_URL || 'http://0.0.0.0';
+const PORT = process.env.PORT || 3000;
+
 
 // Request handling
 router.get('/', (req, res, next) => {
@@ -61,7 +65,7 @@ router.get('/', (req, res, next) => {
 					id: doc._id,
 					request: {
 						type: 'GET',
-						url: 'http://localhost:3000/api/guestbook/' + doc._id
+						url: `${SITE_URL}:${PORT}/api/guestbook/${doc._id}`
 					}
 				}
 			})
@@ -100,7 +104,7 @@ router.post('/', (req, res, next) => {
 				id: result._id,
 				request: {
 					type: 'GET',
-					url: 'http://localhost:3000/api/guestbook/' + result._id
+					url: `${SITE_URL}:${PORT}/api/guestbook/${result._id}`
 				}
 			}
 		});
@@ -130,7 +134,7 @@ router.get('/:id', (req, res, next) => {
 				id: doc._id,
 				request: {
 					type: 'PATCH, DELETE',
-					url: 'http://localhost:3000/api/guestbook/' + doc._id
+					url: `${SITE_URL}:${PORT}/api/guestbook/${doc._id}`
 				}
 			});
 		} else {
@@ -162,7 +166,7 @@ router.patch('/:id', (req, res, next) => {
 			message: 'Guestbook entry updated',
 			request: {
 				type: 'GET',
-				url: 'http://localhost:3000/api/guestbook/' + id
+				url: `${SITE_URL}:${PORT}/api/guestbook/${id}`
 			}
 		});
 	})
@@ -183,7 +187,7 @@ router.delete('/:id', (req, res, next) => {
 			message: 'Guestbook entry deleted',
 			request: {
 				type: 'GET',
-				url: 'http://localhost:3000/api/guestbook/'
+				url: `${SITE_URL}:${PORT}/api/guestbook/`
 			}
 		});
 	})

@@ -8,6 +8,10 @@ const fs = require('fs');
 
 const GalleryImage = require('../models/gallery_images');
 
+// Get env variables
+const SITE_URL = process.env.SITE_URL || 'http://0.0.0.0';
+const PORT = process.env.PORT || 3000;
+
 // Init storage engine
 const storage = multer.diskStorage({
 	destination: './public/images/uploads/',
@@ -67,7 +71,7 @@ router.get('/', (req, res, next) => {
 					path: doc.path.replace(/^(public\/)/,''), // Remove public folder as not needed
 					request: {
 						type: 'GET',
-						url: 'http://localhost:3000/api/gallery/' + doc._id
+						url: `${SITE_URL}:${PORT}/api/gallery/${doc._id}`
 					}
 				}
 			})
@@ -137,7 +141,7 @@ router.get('/:id', (req, res, next) => {
 				path: doc.path.replace(/^(public\/)/, ''), // Remove public folder as not needed
 				request: {
 					type: 'GET',
-					url: 'http://localhost:3000/api/gallery/' + doc._id
+					url: `${SITE_URL}:${PORT}/api/gallery/` + doc._id
 				}
 			}
 			res.status(200).json(response);
@@ -171,7 +175,7 @@ router.delete('/:id', (req, res, next) => {
 				message: 'Gallery image deleted',
 				request: {
 					type: 'GET',
-					url: 'http://localhost:3000/api/gallery/'
+					url: `${SITE_URL}:${PORT}/api/gallery/`
 				}
 			});
 		});

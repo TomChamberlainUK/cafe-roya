@@ -3,6 +3,9 @@ const express = require('express');
 const fetch = require('node-fetch');
 const router = express.Router();
 
+// Get env variables
+const FACEBOOK_EVENTS_ACCESS_TOKEN = process.env.FACEBOOK_EVENTS_ACCESS_TOKEN || '';
+
 router.get('/', (req, res, next) => {
   // for fb graph API
   const facebook = {
@@ -10,7 +13,7 @@ router.get('/', (req, res, next) => {
     since: process.env.NODE_ENV === 'production'
       ? moment().format('YYYY-MM-DD')
       : '2020-10-12',
-    accessToken: process.env.FACEBOOK_EVENTS_ACCESS_TOKEN || '',
+    accessToken: FACEBOOK_EVENTS_ACCESS_TOKEN,
     getFields() { return this.fields.join(','); },
     getURL() { return `https://graph.facebook.com/100740744887263/events?fields=${this.getFields()}&since=${this.since}&asce=start_time&access_token=${this.accessToken}`; }
   }

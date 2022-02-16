@@ -1,16 +1,16 @@
 // Init
-const env = require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const app = express();
 
-const config = {
-	HOST: process.env.HOST || '0.0.0.0',
-	PORT: process.env.PORT || 3000,
-	MONGO_URI: process.env.MONGO_URI || 'mongodb://0.0.0.0/test'
-}
+// Init environment variables
+const HOST = process.env.HOST || '0.0.0.0';
+const PORT = process.env.PORT || 3000;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://0.0.0.0/test';
+const SITE_URL = process.env.SITE_URL || 'http://0.0.0.0';
 
 // Configure API routes
 const menuRoutes = require('./api/routes/menu');
@@ -22,7 +22,7 @@ const configRoutes = require('./api/routes/config');
 
 
 // Init database
-mongoose.connect(config.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -75,6 +75,11 @@ app.use((error, req, res, next) => {
 	})
 });
 
-
-// Start server
-app.listen(config.PORT, () => console.log(`Server listening on http://${config.HOST}:${config.PORT}`));
+// Start listening for requests
+app.listen(PORT, err => {
+	if (err) {
+		console.log(err);
+	} else {
+		console.log(`Server listening on ${SITE_URL}:${PORT}`);
+	}
+});

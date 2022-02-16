@@ -7,6 +7,9 @@ const moment = require('moment');
 const Menu = require('../models/menus');
 const Dish = require('../models/dishes');
 
+// Get env variables
+const SITE_URL = process.env.SITE_URL || 'http://0.0.0.0';
+const PORT = process.env.PORT || 3000;
 
 // Request handling endpoints
 router.get('/', (req, res, next) => {
@@ -121,7 +124,7 @@ router.get('/current', (req, res, next) => {
 			desserts: [],
 			request: {
 				type: 'GET',
-				url: 'http://localhost:3000/api/menu/' + doc._id
+				url: `${SITE_URL}:${PORT}/api/menu/${doc._id}`
 			}
 		}
 		doc.dishes.forEach(dish => {
@@ -134,7 +137,7 @@ router.get('/current', (req, res, next) => {
 				dietaryOptions: dish.dietaryOptions,
 				request: {
 					type: 'GET',
-					url: 'http://localhost:3000/api/dishes/' + dish._id
+					url: `${SITE_URL}:${PORT}/api/dishes/${dish._id}`
 				}
 			}
 			switch (dish.course) {
@@ -174,45 +177,48 @@ router.get('/date/:date', (req,res, next) => {
 	.populate('dishes', '-__v')
 	.exec()
 	.then(doc => {
-		if (!doc) res.status(200).json({ exists: false, id: mongoose.Types.ObjectId() });
-		const response = {
-			exists: true,
-			id: doc._id,
-			month: doc.monthActive,
-			starters: [],
-			mains: [],
-			desserts: [],
-			request: {
-				type: 'GET',
-				url: 'http://localhost:3000/api/menu/' + doc._id
-			}
-		}
-		doc.dishes.forEach(dish => {
-			dish = {
-				id: dish._id,
-				menus: dish.menus,
-				course: dish.course,
-				name: dish.name,
-				description: dish.description,
-				dietaryOptions: dish.dietaryOptions,
+		if (!doc) {
+			res.status(200).json({ exists: false, id: mongoose.Types.ObjectId() });
+		} else {
+			const response = {
+				exists: true,
+				id: doc._id,
+				month: doc.monthActive,
+				starters: [],
+				mains: [],
+				desserts: [],
 				request: {
 					type: 'GET',
-					url: 'http://localhost:3000/api/dishes/' + dish._id
+					url: `${SITE_URL}:${PORT}/api/menu/${doc._id}`
 				}
 			}
-			switch (dish.course) {
-				case 'starter':
-					response.starters.push(dish);
-					break;
-				case 'main':
-					response.mains.push(dish);
-					break;
-				case 'dessert':
-					response.desserts.push(dish);
-					break;
-			}
-		});
-		res.status(200).json(response);
+			doc.dishes.forEach(dish => {
+				dish = {
+					id: dish._id,
+					menus: dish.menus,
+					course: dish.course,
+					name: dish.name,
+					description: dish.description,
+					dietaryOptions: dish.dietaryOptions,
+					request: {
+						type: 'GET',
+						url: `${SITE_URL}:${PORT}/api/dishes/${dish._id}`
+					}
+				}
+				switch (dish.course) {
+					case 'starter':
+						response.starters.push(dish);
+						break;
+					case 'main':
+						response.mains.push(dish);
+						break;
+					case 'dessert':
+						response.desserts.push(dish);
+						break;
+				}
+			});
+			res.status(200).json(response);
+		}
 	})
 	.catch(err => {
 		console.log(err);
